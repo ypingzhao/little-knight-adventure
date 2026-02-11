@@ -21,7 +21,8 @@
       "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://flying_pig\\\\.gd\"\"|path=\"\"res://scripts/actors/npc/flying_pig.gd\"\"|g' flying_pig.tscn)",
       "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://kill_zone\\\\.gd\"\"|path=\"\"res://scripts/traps/kill_zone.gd\"\"|g' kill_zone.tscn)",
       "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://slime_green\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/slime_green.gd\"\"|g' scenes/enemies/slime_green.tscn)",
-      "Bash(__NEW_LINE_a42ebdb598a7b948__ echo \"✅ 所有场景文件路径已更新\")"
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ echo \"✅ 所有场景文件路径已更新\")",
+      "Bash(ls:*)"
     ]
   }
 }
