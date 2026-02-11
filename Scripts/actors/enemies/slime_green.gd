@@ -1,5 +1,5 @@
-class_name Slime
 extends CharacterBody2D
+# 移除 class_name 以避免与全局单例冲突
 
 const SPEED = 60
 const EXPLOSION_FRICTION = 0.99

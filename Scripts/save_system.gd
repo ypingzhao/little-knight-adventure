@@ -1,6 +1,6 @@
 # 自动加载名：SaveSystem
 extends Node
-class_name SaveSystem
+# 旧文件：移除 class_name 避免冲突（将被删除）
 
 const SAVE_PATH := "user://save_game.bin"
 const SAVE_VERSION := 1             # 用于以后字段迁移
