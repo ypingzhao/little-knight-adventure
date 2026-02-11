@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var door: Node2D = $Door
-@onready var boss: RedSlimeBoss = $SlimePurple
+@onready var boss: RedSlimeBoss = $SlimePurple as RedSlimeBoss
 @onready var door_show_sound: AudioStreamPlayer = $DoorShowSound
 
 func _ready():
