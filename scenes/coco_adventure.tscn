@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=4 uid="uid://dw5m6orqnudam"]
 
-[ext_resource type="Script" uid="uid://48h5jtm1voqy" path="res://scripts/levels/coco_adventure.gd" id="1_6r1gv"]
+[ext_resource type="Script" uid="uid://db3gv0si6k0wi" path="res://scripts/levels/coco_adventure.gd" id="1_6r1gv"]
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_sud2q"]
 [ext_resource type="AudioStream" uid="uid://chgdqhr0aem12" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/music/time_for_adventure.mp3" id="2_7tbtp"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="3_vamtx"]
