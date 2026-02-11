@@ -5,14 +5,26 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Panel"]
 bg_color = Color(0.15, 0.15, 0.2, 0.95)
 border_color = Color(0.5, 0.5, 0.6, 1.0)
-set_border_width_all(3)
-set_corner_radius_all(10)
+border_width_left = 3
+border_width_right = 3
+border_width_top = 3
+border_width_bottom = 3
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_CloseButton"]
 bg_color = Color(0.8, 0.2, 0.2, 1.0)
 border_color = Color(1.0, 0.3, 0.3, 1.0)
-set_border_width_all(2)
-set_corner_radius_all(4)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="SkillTreeUI" type="CanvasLayer"]
 layer = 128

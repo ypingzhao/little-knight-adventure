@@ -1,6 +1,6 @@
 # 🐛 UI 开发问题汇总
 
-> **版本**: 1.0
+> **版本**: 1.2
 > **最后更新**: 2025-02-11
 > **适用项目**: Little Knight Adventure v0.5
 > **目的**: 记录 UI 开发中遇到的常见问题和解决方案，避免重复踩坑
@@ -392,6 +392,189 @@ Parse Error: Expected 4 arguments for constructor.
 ls -la scripts/ui/skill_tree_ui.gd.uid
 cat scripts/ui/skill_tree_ui.gd.uid
 ```
+
+---
+
+### ❌ 问题 4.4: 手动创建 UID 文件（严重错误！）
+
+**错误信息**:
+```
+Condition "!int_resources.has(id)" is true. Returning: ERR_INVALID_PARAMETER
+Parse Error: Invalid parameter.
+Script inherits from native type 'CanvasLayer', so it can't be assigned to an object of type: 'StyleBoxFlat'
+```
+
+**问题原因**:
+手动创建 `.uid` 文件和场景 UID，导致资源引用混乱。
+
+**❌ 错误做法**:
+```bash
+# ❌ 永远不要手动创建 .uid 文件！
+echo "uid://dq5k7x3n8w2pm" > scenes/ui/skill_tree_ui.tscn.uid
+
+# ❌ 不要手动编写场景 UID
+[gd_scene load_steps=3 format=3 uid="uid://dq5k7x3n8w2pm"]
+```
+
+**✅ 正确做法**:
+```bash
+# 1. 删除所有手动创建的 .uid 文件
+find . -name "*.uid" -type f -delete
+
+# 2. 移除场景文件中的手动 UID
+[gd_scene load_steps=3 format=3]  # 无 UID
+
+# 3. 在 Godot 编辑器中打开并保存场景
+# - Godot 自动生成 .uid 文件（针对脚本）
+# - Godot 自动生成场景 UID
+```
+
+**Godot UID 系统的正确理解**:
+
+1. **`.uid` 文件**：
+   - ✅ **只为脚本文件**自动生成（`.gd.uid`）
+   - ❌ **场景文件不需要** `.uid` 文件
+   - ✅ 由编辑器在保存时自动管理
+
+2. **场景文件中的 UID**：
+   - ✅ `[gd_scene ... uid="uid://xxx"]` 由编辑器自动生成
+   - ❌ 不要手动编写或修改
+   - ✅ 保存场景时自动添加
+
+3. **ExtResource UID**：
+   - ✅ `[ext_resource type="Script" uid="uid://xxx" path="..."]`
+   - ✅ 由编辑器自动管理
+   - ❌ 不要手动修改
+
+**正确的工作流程**:
+```
+1. 在 Godot 编辑器中创建场景/脚本
+2. 按 Ctrl+S 保存
+3. Godot 自动生成所有必要的 UID
+4. 永远不要手动创建 .uid 文件
+```
+
+**为什么会犯错**：
+- 误以为 UID 需要手动管理
+- 试图"预先"创建 UID 以避免错误
+- 不了解 Godot 的自动 UID 系统
+
+**教训**：
+- 🔴 **严重级别** - 这是最严重的错误之一
+- 🔴 **影响范围** - 导致场景完全无法加载
+- 🔴 **修复成本** - 需要删除所有手动 UID，重新保存所有场景
+
+**影响文件**:
+- 所有手动创建的 `.uid` 文件（54个文件）
+- `scenes/ui/skill_tree_ui.tscn`
+- `scenes/start_game.tscn`
+# uid://db7kuj6r1ubhg 是 start_menu.gd 的 UID，不是 skill_tree_ui.gd 的
+```
+
+**解决方案**:
+```gdscript
+# ✅ 正确：使用脚本文件的正确 UID
+[ext_resource type="Script" uid="uid://d2rjpiwjuegof" path="res://scripts/ui/skill_tree_ui.gd" id="1"]
+```
+
+**如何验证**:
+```bash
+# 检查脚本对应的 UID 文件
+ls -la scripts/ui/skill_tree_ui.gd.uid
+cat scripts/ui/skill_tree_ui.gd.uid
+```
+
+---
+
+### ❌ 问题 4.5: 场景文件中使用 GDScript 方法调用
+
+**错误信息**:
+```
+ERROR: scene/resources/resource_format_text.cpp:113 - Condition "!int_resources.has(id)" is true. Returning: ERR_INVALID_PARAMETER
+ERROR: scene/resources/resource_format_text.cpp:279 - Parse Error: Invalid parameter. [Resource file res://scenes/ui/skill_tree_ui.tscn:51]
+ERROR: Failed loading resource: res://scenes/ui/skill_tree_ui.tscn.
+```
+
+**问题原因**:
+在 `.tscn` 场景文件中使用了 GDScript 风格的辅助方法调用，而非场景格式属性。
+
+**❌ 错误代码**（场景文件 .tscn）:
+```gdscript
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_CloseButton"]
+bg_color = Color(0.8, 0.2, 0.2, 1.0)
+border_color = Color(1.0, 0.3, 0.3, 1.0)
+set_border_width_all(2)      # ❌ 这是 GDScript 方法，不能在场景文件中使用！
+set_corner_radius_all(4)     # ❌ 这也是 GDScript 方法！
+```
+
+**✅ 正确代码**（场景文件 .tscn）:
+```gdscript
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_CloseButton"]
+bg_color = Color(0.8, 0.2, 0.2, 1.0)
+border_color = Color(1.0, 0.3, 0.3, 1.0)
+border_width_left = 2        # ✅ 使用独立属性
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+```
+
+**GDScript vs 场景格式的区别**:
+
+| 场景文件 (.tscn) | GDScript (.gd) |
+|------------------|----------------|
+| ❌ 不能使用方法调用 | ✅ 可以使用方法调用 |
+| ✅ 只能使用属性赋值 | ✅ 可以使用属性和方法 |
+| 格式: `property = value` | 格式: `object.method(args)` |
+
+**示例对比**:
+
+场景文件 (.tscn):
+```gdscript
+[sub_resource type="StyleBoxFlat" id="MyStyle"]
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+```
+
+GDScript 文件 (.gd):
+```gdscript
+var style = StyleBoxFlat.new()
+style.set_border_width_all(2)  # ✅ GDScript 中可以使用
+style.set_corner_radius_all(4) # ✅ GDScript 中可以使用
+```
+
+**常见错误方法**:
+- ❌ `set_border_width_all(value)` → ✅ 使用 4 个独立属性
+- ❌ `set_corner_radius_all(value)` → ✅ 使用 4 个独立属性
+- ❌ `set_content_margin_all(value)` → ✅ 使用 4 个独立属性
+
+**最佳实践**:
+1. 参考现有工作场景文件的格式（如 `shop_ui.tscn`）
+2. 不要在 `.tscn` 文件中写任何方法调用
+3. 只使用 `property = value` 格式
+4. 如需动态样式，在 GDScript 中创建（如 `_setup_hover_effect` 函数）
+
+**为什么会犯错**：
+- GDScript 和场景格式看起来相似
+- 辅助方法在 GDScript 中更简洁
+- 不了解场景文件格式的限制
+
+**教训**：
+- 🔴 **严重级别** - 场景完全无法加载
+- 🟡 **调试难度** - 错误信息指向 SubResource 行，实际是 sub_resource 定义有问题
+- 🟢 **修复成本** - 将方法调用替换为独立属性即可
+
+**影响文件**:
+- `scenes/ui/skill_tree_ui.tscn` (已修复)
 
 ---
 
