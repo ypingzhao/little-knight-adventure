@@ -475,7 +475,7 @@ Failed loading resource: res://scenes/ui/skill_tree_ui.tscn
 
 ## 相关文档
 
-- [UI开发问题汇总.md](./UI开发问题汇总.md) - 问题 4.4：手动创建 UID 文件
+- [开发问题汇总.md](./开发问题汇总.md) - 问题 4.4：手动创建 UID 文件
 - [UID不匹配问题修复指南.md](./UID不匹配问题修复指南.md) - UID 不匹配（文件移动后）的修复
 - [Lessons_Learnt_复盘清单.md](./Lessons_Learnt_复盘清单.md) - 所有严重问题的快速参考
 
