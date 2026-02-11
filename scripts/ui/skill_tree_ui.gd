@@ -61,9 +61,8 @@ func _ready() -> void:
     if ui_control:
         ui_control.visible = false
 
-    # 连接关闭按钮
-    if close_button:
-        close_button.pressed.connect(_on_close_button_pressed)
+    # 注意：关闭按钮的 pressed 信号已在场景文件中连接，无需重复连接
+    # [connection signal="pressed" from="SkillTreeControl/PanelContainer/CloseButton" to="." method="_on_close_button_pressed"]
 
     # 连接技能树管理器信号
     SkillTreeManager.skill_upgraded.connect(_on_skill_upgraded)
