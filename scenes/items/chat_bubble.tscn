@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://behco5a4loljh"]
 
-[ext_resource type="Script" uid="uid://j5cm6ajrqgf0" path="res://Scripts/chat_bubble.gd" id="1_him6r"]
+[ext_resource type="Script" uid="uid://j5cm6ajrqgf0" path="res://scripts/ui/chat_bubble.gd" id="1_him6r"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_him6r"]
 content_margin_left = 8.0

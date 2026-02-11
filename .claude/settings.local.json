@@ -22,7 +22,17 @@
       "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://kill_zone\\\\.gd\"\"|path=\"\"res://scripts/traps/kill_zone.gd\"\"|g' kill_zone.tscn)",
       "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://slime_green\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/slime_green.gd\"\"|g' scenes/enemies/slime_green.tscn)",
       "Bash(__NEW_LINE_a42ebdb598a7b948__ echo \"✅ 所有场景文件路径已更新\")",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/enemies/bat\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/bat.gd\"\"|g' scenes/enemies/bat.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/enemies/bat_spawner\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/bat_spawner.gd\"\"|g' scenes/enemies/bat_spawner.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/slime_purple_boss\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/slime_boss.gd\"\"|g' scenes/enemies/slime_purple.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/HUD\\\\.gd\"\"|path=\"\"res://scripts/ui/hud.gd\"\"|g' scenes/HUD_layer.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/chat_bubble\\\\.gd\"\"|path=\"\"res://scripts/ui/chat_bubble.gd\"\"|g' scenes/items/chat_bubble.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/coin\\\\.gd\"\"|path=\"\"res://scripts/items/coin.gd\"\"|g' scenes/items/coin.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/health_pot\\\\.gd\"\"|path=\"\"res://scripts/items/health_potion.gd\"\"|g' scenes/items/health_pot.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/sword\\\\.gd\"\"|path=\"\"res://scripts/items/sword.gd\"\"|g' scenes/items/sword.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/platform_a_active\\\\.gd\"\"|path=\"\"res://scripts/traps/active_platform.gd\"\"|g' scenes/levels/dungeon_normal_ch_1.tscn)",
+      "Bash(__NEW_LINE_a61c7747b343ba62__ echo \"✅ 所有剩余场景文件路径已更新\")"
     ]
   }
 }
