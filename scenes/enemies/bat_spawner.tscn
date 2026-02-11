@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://l6dia2lnjljn"]
+
+[ext_resource type="Script" uid="uid://b05idbekwnynh" path="res://Scripts/enemies/bat_spawner.gd" id="1_y40s7"]
+[ext_resource type="PackedScene" uid="uid://c2m8drm0854op" path="res://scenes/enemies/bat.tscn" id="2_i1iek"]
+
+[node name="BatSpawner" type="Node2D"]
+script = ExtResource("1_y40s7")
+bat_scene = ExtResource("2_i1iek")
+spawn_interval = 5.0

@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bacus37x47hj5"]
+
+[ext_resource type="PackedScene" uid="uid://dip5hs3lqmvdg" path="res://player/player.tscn" id="1_hddm4"]
+[ext_resource type="PackedScene" uid="uid://cxho3j38e50ww" path="res://fall_stone.tscn" id="2_qchbg"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_maef2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hddm4"]
+size = Vector2(583, 20)
+
+[node name="Playground" type="Node2D"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(249.00003, 253)
+scale = Vector2(581.99994, 18.5)
+texture = SubResource("PlaceholderTexture2D_maef2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(249.5, 253)
+shape = SubResource("RectangleShape2D_hddm4")
+
+[node name="Player" parent="." instance=ExtResource("1_hddm4")]
+position = Vector2(226, 125)
+
+[node name="FallStone" parent="." instance=ExtResource("2_qchbg")]

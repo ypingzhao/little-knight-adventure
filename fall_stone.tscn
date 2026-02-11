@@ -1,0 +1,121 @@
+[gd_scene load_steps=8 format=3 uid="uid://mu2oyfm7lqyk"]
+
+[ext_resource type="Script" uid="uid://b3se5x4xqh2qh" path="res://fall_stone.gd" id="1_kpikh"]
+[ext_resource type="AudioStream" uid="uid://dsktr3d4reo4a" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav" id="2_csu5u"]
+[ext_resource type="Texture2D" uid="uid://cbpgvn4uh3jqh" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_kpikh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kpikh"]
+size = Vector2(21, 17)
+
+[sub_resource type="Animation" id="Animation_csu5u"]
+length = 0.001
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xe0uu"]
+resource_name = "shakefall"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.10391816, 0.2, 0.30360404, 0.4, 0.5, 0.6, 0.70391816, 0.8, 0.90360403, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -1), Vector2(0, 3), Vector2(0, -2), Vector2(0, 5), Vector2(0, -2), Vector2(0, 3), Vector2(0, -1), Vector2(0, 3), Vector2(0, -2), Vector2(0, 5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kpikh"]
+_data = {
+&"RESET": SubResource("Animation_csu5u"),
+&"shakefall": SubResource("Animation_xe0uu")
+}
+
+[node name="FallStone" type="Node2D"]
+z_index = 1
+script = ExtResource("1_kpikh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -8)
+texture = ExtResource("2_kpikh")
+region_enabled = true
+region_rect = Rect2(48, 1, 16, 15)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -8.5)
+shape = SubResource("RectangleShape2D_kpikh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kpikh")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_csu5u")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://k6accm1dofjy"]
+
+[ext_resource type="Script" uid="uid://bdxnq51vo2bx3" path="res://scenes/traps/spike.gd" id="1_7ccwm"]
+[ext_resource type="Texture2D" uid="uid://bj5kmq5okqefn" path="res://assets/kings pigs sprites 2/Dungeon Tile Set.png" id="1_v87iq"]
+[ext_resource type="AudioStream" uid="uid://g8krdm5e5svw" path="res://assets/Sprout village Assets/Sound/Hoe.wav" id="2_w8xo7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v87iq"]
+size = Vector2(15, 8)
+
+[node name="Spike" type="Node2D" groups=["enemy"]]
+z_index = -1
+script = ExtResource("1_7ccwm")
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_w8xo7")
+volume_db = -20.991
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.5, -4)
+shape = SubResource("RectangleShape2D_v87iq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, -8)
+texture = ExtResource("1_v87iq")
+region_enabled = true
+region_rect = Rect2(48, 224, 16, 16)

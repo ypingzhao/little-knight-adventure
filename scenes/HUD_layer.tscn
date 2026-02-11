@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://cml20mwiesdyq"]
+
+[ext_resource type="Script" uid="uid://cs3m33fdjc1cn" path="res://Scripts/HUD.gd" id="1_ek3oe"]
+[ext_resource type="FontFile" uid="uid://cai4smkl08013" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="2_0qrqu"]
+[ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="3_mx0kw"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6r1gv"]
+font = ExtResource("2_0qrqu")
+font_size = 8
+shadow_size = 2
+shadow_color = Color(0.015686275, 0.015686275, 0.015686275, 0.5647059)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tg4cr"]
+bg_color = Color(0.16206557, 0.1620656, 0.16206548, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_37rai"]
+bg_color = Color(0.85622066, 0.13333753, 0.4419576, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="LabelSettings" id="LabelSettings_dtxlf"]
+font_size = 12
+
+[node name="HUDlayer" type="CanvasLayer"]
+script = ExtResource("1_ek3oe")
+
+[node name="CoinLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 96.0
+offset_bottom = 39.0
+text = "100"
+label_settings = SubResource("LabelSettings_6r1gv")
+vertical_alignment = 1
+
+[node name="coin mark" parent="." instance=ExtResource("3_mx0kw")]
+position = Vector2(16, 27)
+collision_layer = 2
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+offset_left = 32.0
+offset_top = 250.0
+offset_right = 94.0
+offset_bottom = 263.0
+size_flags_horizontal = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_tg4cr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_37rai")
+value = 50.0
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+offset_left = -2.0
+offset_top = 245.0
+offset_right = 38.0
+offset_bottom = 268.0
+text = "HP"
+label_settings = SubResource("LabelSettings_dtxlf")
+horizontal_alignment = 1
+vertical_alignment = 1

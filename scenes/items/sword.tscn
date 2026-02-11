@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dva2rb47v5lb7"]
+
+[ext_resource type="Texture2D" uid="uid://qj2581dfsd6f" path="res://assets/sword.png" id="1_76q7b"]
+[ext_resource type="Script" uid="uid://bpe8ei76wgxr2" path="res://Scripts/sword.gd" id="1_i5ed0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76q7b"]
+size = Vector2(10.25, 10.25)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i5ed0"]
+radius = 5.0
+
+[node name="Sword" type="Area2D"]
+script = ExtResource("1_i5ed0")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
+texture = ExtResource("1_76q7b")
+
+[node name="Col" type="CollisionShape2D" parent="."]
+position = Vector2(-0.125, -4.875)
+shape = SubResource("RectangleShape2D_76q7b")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -5)
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_i5ed0")
+debug_color = Color(0.9067214, 0.1386497, 0.66289157, 0.41960785)

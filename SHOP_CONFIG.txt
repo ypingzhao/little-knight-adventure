@@ -1,0 +1,7 @@
+# Shop System Config 
+ 
+Add this to project.godot: 
+ 
+[autoload] 
+TradeItemList="*res://Scripts/autoload/trade_item_list.gd" 
+ShopUI="*res://scenes/shop_ui.tscn" 

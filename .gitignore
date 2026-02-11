@@ -1,0 +1,42 @@
+# Godot 4.x specific ignores
+.godot/
+
+# Import files
+.import/
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS specific
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+*.import
+
+# Build outputs
+*.apk
+*.aab
+*.zip
+
+# Android
+android/build/
+android/bin/
+android/.gradle/
+android/local.properties
+
+# iOS
+xcode/
+xcuserdata/
+
+# Mono/C#
+*.sln
+*.csproj
+*.user
+
+# But include these files
+!.godot/shader_cache/
+!.godot/imported/

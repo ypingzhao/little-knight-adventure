@@ -1,0 +1,62 @@
+[gd_scene load_steps=12 format=3 uid="uid://werxmltrbusa"]
+
+[ext_resource type="Texture2D" uid="uid://5be5gi2hrbxw" path="res://assets/waterfall/W1001.png" id="1_0vwjs"]
+[ext_resource type="Script" uid="uid://ciebrqycue2bj" path="res://scenes/traps/waterfall.gd" id="1_m21ke"]
+[ext_resource type="Texture2D" uid="uid://phgmataohmqv" path="res://assets/waterfall/W1002.png" id="2_m21ke"]
+[ext_resource type="Texture2D" uid="uid://bud5q3jrbnvu7" path="res://assets/waterfall/W1003.png" id="3_1mfo0"]
+[ext_resource type="Texture2D" uid="uid://ci2e5m7g1lmrj" path="res://assets/waterfall/W1004.png" id="4_lb5wp"]
+[ext_resource type="Texture2D" uid="uid://yri7kmahjgdn" path="res://assets/waterfall/W1005.png" id="5_0rwxd"]
+[ext_resource type="Texture2D" uid="uid://b3dcgp324h60k" path="res://assets/waterfall/W1006.png" id="6_yrpma"]
+[ext_resource type="Texture2D" uid="uid://d3fvvqhmb1nb7" path="res://assets/waterfall/W1007.png" id="7_pyq73"]
+[ext_resource type="Texture2D" uid="uid://0s6ar8jd2tas" path="res://assets/waterfall/W1008.png" id="8_8cbjn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y764i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0vwjs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_m21ke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_1mfo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lb5wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0rwxd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yrpma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pyq73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8cbjn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0vwjs"]
+size = Vector2(48, 512.5)
+
+[node name="Waterfall" type="Node2D"]
+script = ExtResource("1_m21ke")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -256)
+sprite_frames = SubResource("SpriteFrames_y764i")
+autoplay = "default"
+frame_progress = 0.12290195
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -256.25)
+shape = SubResource("RectangleShape2D_0vwjs")

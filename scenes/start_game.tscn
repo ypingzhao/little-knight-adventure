@@ -1,0 +1,199 @@
+[gd_scene load_steps=23 format=3 uid="uid://dntp3vnewdr15"]
+
+[ext_resource type="Texture2D" uid="uid://c7mpobee22vr0" path="res://assets/brackeys_platformer_assets/Background.png" id="1_c75kr"]
+[ext_resource type="Script" uid="uid://dv7ghi5g20u7t" path="res://Scripts/start_game.gd" id="1_wcjs8"]
+[ext_resource type="Texture2D" uid="uid://hsu5rvigstmb" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png" id="2_tq2sd"]
+[ext_resource type="AudioStream" uid="uid://bua4870kt7jbl" path="res://assets/music/04 - Silent Forest.mp3" id="3_2aiwh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_c75kr"]
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2aiwh"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcjs8"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr1nj"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mc8qq"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xi32"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ya1w5"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ty0x"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyaqm"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0qae"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gyxdi"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr1gt"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e8p0f"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpf27"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r4hxh"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ytee"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jit1l"]
+atlas = ExtResource("2_tq2sd")
+region = Rect2(224, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wif6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2aiwh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wcjs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr1nj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mc8qq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xi32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ya1w5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ty0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyaqm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0qae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gyxdi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr1gt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e8p0f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpf27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r4hxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4ytee")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jit1l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="StartGame" type="Node2D"]
+script = ExtResource("1_wcjs8")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(240.5, 135.5)
+scale = Vector2(1.8333334, 1.5722222)
+texture = ExtResource("1_c75kr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 213.0
+offset_top = 156.0
+offset_right = 260.0
+offset_bottom = 196.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
+layout_mode = 2
+
+[node name="ButtonPlay" type="Button" parent="CanvasLayer/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PLAY
+"
+
+[node name="LabelTitle1" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 40.0
+offset_right = 167.0
+offset_bottom = 63.0
+text = "Coco & Oscar "
+
+[node name="LabelTitle2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 81.0
+offset_right = 167.0
+offset_bottom = 104.0
+text = "Little Knight Adventure"
+label_settings = SubResource("LabelSettings_c75kr")
+
+[node name="KnigtLeft" type="AnimatedSprite2D" parent="."]
+position = Vector2(186, 170)
+sprite_frames = SubResource("SpriteFrames_7wif6")
+autoplay = "default"
+frame_progress = 0.90314156
+
+[node name="KnigtRight" type="AnimatedSprite2D" parent="."]
+position = Vector2(289, 170)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_7wif6")
+autoplay = "default"
+frame_progress = 0.20208009
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2aiwh")
+volume_db = -10.297
+autoplay = true
+parameters/looping = true
+
+[connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]

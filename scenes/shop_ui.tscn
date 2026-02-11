@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://gcbbb5b5vlo1"]
+
+[ext_resource type="Script" path="res://Scripts/shop_ui.gd" id="shop_ui_script"]
+
+[ext_resource type="FontFile" uid="uid://cai4smkl08013" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="pixel_font"]
+
+[sub_resource type="LabelSettings" id="TitleLabelSettings"]
+font = ExtResource("pixel_font")
+font_size = 18
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.8)
+
+[sub_resource type="LabelSettings" id="CoinsLabelSettings"]
+font = ExtResource("pixel_font")
+font_size = 12
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.6)
+
+[sub_resource type="StyleBoxFlat" id="PanelStyle"]
+bg_color = Color(0.1, 0.1, 0.12, 0.95)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="ButtonStyle"]
+bg_color = Color(0.2, 0.6, 0.3, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="ButtonHoverStyle"]
+bg_color = Color(0.3, 0.8, 0.4, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="ShopUI" type="CanvasLayer"]
+layer = 128
+script = ExtResource("shop_ui_script")
+
+[node name="ShopUIControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="ColorRect" parent="ShopUIControl"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="PanelContainer" type="Panel" parent="ShopUIControl"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -80.0
+offset_right = 240.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("PanelStyle")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ShopUIControl/PanelContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+theme_override_constants/separation = 6
+
+[node name="TitleLabel" type="Label" parent="ShopUIControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "🛒 商店"
+label_settings = SubResource("TitleLabelSettings")
+horizontal_alignment = 1
+
+[node name="CoinsLabel" type="Label" parent="ShopUIControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "当前金币: 💰 0"
+label_settings = SubResource("CoinsLabelSettings")
+horizontal_alignment = 1
+
+[node name="ItemsGrid" type="GridContainer" parent="ShopUIControl/PanelContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+
+[node name="CloseButton" type="Button" parent="ShopUIControl/PanelContainer"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 0.0
+offset_left = -32.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 32.0
+text = "ESC"
+custom_minimum_size = Vector2(24, 24)
+theme_override_styles/normal = SubResource("ButtonStyle")
+theme_override_styles/hover = SubResource("ButtonHoverStyle")
+theme_override_font_sizes/font_size = 10
+
+[node name="NotificationLabel" type="Label" parent="ShopUIControl"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 10.0
+offset_right = 200.0
+offset_bottom = 35.0
+grow_horizontal = 2
+text = ""
+label_settings = SubResource("TitleLabelSettings")
+horizontal_alignment = 1
+vertical_alignment = 1

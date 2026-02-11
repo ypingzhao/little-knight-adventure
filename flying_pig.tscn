@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkyfxyiif2qp7"]
+
+[ext_resource type="Texture2D" uid="uid://do1rd11yxh4u6" path="res://assets/Kings and Pigs Sprites/03-Pig/Run (34x28).png" id="1_82hfu"]
+[ext_resource type="Script" uid="uid://8yljrdb2nrlj" path="res://flying_pig.gd" id="1_xg7cy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xg7cy"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(0, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ak757"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(34, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbda5"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(68, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0p6qj"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(102, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ul0q"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(136, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r2qt"]
+atlas = ExtResource("1_82hfu")
+region = Rect2(170, 0, 34, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_stu7t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xg7cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ak757")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbda5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0p6qj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ul0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r2qt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="flyingPig" type="Node2D"]
+script = ExtResource("1_xg7cy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, -14)
+sprite_frames = SubResource("SpriteFrames_stu7t")
+autoplay = "default"
+frame = 4
+frame_progress = 0.72795284
