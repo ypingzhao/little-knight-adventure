@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://c17uprknw3yfl"]
 
 [ext_resource type="Texture2D" uid="uid://c8r2aw7je6nqr" path="res://assets/Sprout village Assets/Inventory/chest.png" id="1_16coa"]
-[ext_resource type="Script" uid="uid://b5p4500an2uk" path="res://treasure_box.gd" id="1_e1h5c"]
+[ext_resource type="Script" uid="uid://b5p4500an2uk" path="res://scripts/items/treasure_box.gd" id="1_e1h5c"]
 [ext_resource type="AudioStream" uid="uid://cntuxlcipihop" path="res://assets/Sprout village Assets/Sound/ChestOpen.wav" id="2_1ha1l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16coa"]

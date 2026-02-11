@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=4 uid="uid://ctph7o0jcutqv"]
 
 [ext_resource type="TileSet" uid="uid://bfpmx1jcxl14d" path="res://tileset/dungeon.tres" id="1_6elmv"]
-[ext_resource type="Script" uid="uid://dkti3lq4un5x1" path="res://dungeon.gd" id="1_kun6q"]
+[ext_resource type="Script" uid="uid://dkti3lq4un5x1" path="res://scripts/levels/dungeon.gd" id="1_kun6q"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="2_qu0b2"]
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="2_vol8w"]
 [ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="3_noicg"]

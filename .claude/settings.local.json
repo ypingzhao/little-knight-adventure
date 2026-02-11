@@ -8,7 +8,20 @@
       "Bash(git branch:*)",
       "Bash(git push:*)",
       "Bash(git checkout:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(grep:*)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://coco_adventure\\\\.gd\"\"|path=\"\"res://scripts/levels/coco_adventure.gd\"\"|g' scenes/coco_adventure.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://dungeon\\\\.gd\"\"|path=\"\"res://scripts/levels/dungeon.gd\"\"|g' scenes/dungeon.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://oscar_adventure\\\\.gd\"\"|path=\"\"res://scripts/levels/oscar_adventure.gd\"\"|g' scenes/oscar_adventure.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://shop\\\\.gd\"\"|path=\"\"res://scripts/levels/shop.gd\"\"|g' scenes/shop.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://boss_01_scene\\\\.gd\"\"|path=\"\"res://scripts/levels/boss_arena.gd\"\"|g' scenes/levels/boss01_scene.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://box\\\\.gd\"\"|path=\"\"res://scripts/items/box.gd\"\"|g' scenes/items/box.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://door\\\\.gd\"\"|path=\"\"res://scripts/items/door.gd\"\"|g' scenes/items/door.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://treasure_box\\\\.gd\"\"|path=\"\"res://scripts/items/treasure_box.gd\"\"|g' scenes/items/treasure_box.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://flying_pig\\\\.gd\"\"|path=\"\"res://scripts/actors/npc/flying_pig.gd\"\"|g' flying_pig.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://kill_zone\\\\.gd\"\"|path=\"\"res://scripts/traps/kill_zone.gd\"\"|g' kill_zone.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ sed -i 's|path=\"\"res://slime_green\\\\.gd\"\"|path=\"\"res://scripts/actors/enemies/slime_green.gd\"\"|g' scenes/enemies/slime_green.tscn)",
+      "Bash(__NEW_LINE_a42ebdb598a7b948__ echo \"✅ 所有场景文件路径已更新\")"
     ]
   }
 }

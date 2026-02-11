@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dqh67sat8kl11"]
 
 [ext_resource type="Texture2D" uid="uid://cl3xiboircska" path="res://assets/Sprout village Assets/Dungeon Tile Set.png" id="1_ba8gm"]
-[ext_resource type="Script" uid="uid://bp3ulxmjijx4" path="res://door.gd" id="1_v6xrn"]
+[ext_resource type="Script" uid="uid://bp3ulxmjijx4" path="res://scripts/items/door.gd" id="1_v6xrn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ba8gm"]
 size = Vector2(16, 22)

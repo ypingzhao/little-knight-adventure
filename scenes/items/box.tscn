@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bvre61c8p2ixw"]
 
-[ext_resource type="Script" uid="uid://cvjfeq1a7wq68" path="res://box.gd" id="1_oq5cr"]
+[ext_resource type="Script" uid="uid://cvjfeq1a7wq68" path="res://scripts/items/box.gd" id="1_oq5cr"]
 [ext_resource type="Texture2D" uid="uid://cbpgvn4uh3jqh" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_oq5cr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2tbl"]
