@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://o4dt58j36m77" path="res://assets/Kings and Pigs Sprites/01-King Human/Idle (78x58).png" id="king_idle_texture"]
 [ext_resource type="PackedScene" uid="uid://behco5a4loljh" path="res://scenes/items/chat_bubble.tscn" id="2_782h8"]
-[ext_resource type="Script" path="res://Scripts/shop_keeper.gd" id="shop_keeper_script"]
+[ext_resource type="Script" path="res://scripts/actors/npc/shop_keeper.gd" id="shop_keeper_script"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oqpvu"]
 size = Vector2(26, 24)

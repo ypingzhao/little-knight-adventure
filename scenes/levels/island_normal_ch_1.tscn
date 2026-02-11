@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://chgdqhr0aem12" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/music/time_for_adventure.mp3" id="8_d55yo"]
 [ext_resource type="PackedScene" uid="uid://c17uprknw3yfl" path="res://scenes/items/treasure_box.tscn" id="9_i0bvb"]
 [ext_resource type="PackedScene" uid="uid://5ub7d2dafrsl" path="res://scenes/traps/platform_a.tscn" id="10_rrhye"]
-[ext_resource type="Script" uid="uid://bt3xssohflnqq" path="res://Scripts/platform_a_active.gd" id="11_l1mqc"]
+[ext_resource type="Script" uid="uid://bt3xssohflnqq" path="res://scripts/traps/active_platform.gd" id="11_l1mqc"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="12_htiap"]
 [ext_resource type="PackedScene" uid="uid://l6dia2lnjljn" path="res://scenes/enemies/bat_spawner.tscn" id="13_gshgv"]
 

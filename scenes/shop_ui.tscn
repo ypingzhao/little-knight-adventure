@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://gcbbb5b5vlo1"]
 
-[ext_resource type="Script" path="res://Scripts/shop_ui.gd" id="shop_ui_script"]
+[ext_resource type="Script" path="res://scripts/ui/shop_ui.gd" id="shop_ui_script"]
 
 [ext_resource type="FontFile" uid="uid://cai4smkl08013" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="pixel_font"]
 

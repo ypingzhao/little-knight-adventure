@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://b0bw7o7yjf3mf"]
 
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_xfvoa"]
-[ext_resource type="Script" uid="uid://8sd8eawpdtcd" path="res://Scripts/shop.gd" id="1_y6sft"]
+[ext_resource type="Script" uid="uid://8sd8eawpdtcd" path="res://scripts/levels/shop.gd" id="1_y6sft"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="3_1l46r"]
 [ext_resource type="PackedScene" uid="uid://d43tortww48b" path="res://scenes/NPC/shop_keeper.tscn" id="3_032fp"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="4_032fp"]

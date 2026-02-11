@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://cldhictj5kcpi"]
 
 [ext_resource type="Texture2D" uid="uid://hsu5rvigstmb" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png" id="1_dwgep"]
-[ext_resource type="Script" uid="uid://cgfxt54g0xk7w" path="res://Scripts/knight.gd" id="1_h7tc2"]
+[ext_resource type="Script" uid="uid://cgfxt54g0xk7w" path="res://scripts/actors/player/knight.gd" id="1_h7tc2"]
 [ext_resource type="PackedScene" uid="uid://dva2rb47v5lb7" path="res://scenes/items/sword.tscn" id="2_vkpp8"]
 [ext_resource type="AudioStream" uid="uid://b0wc2d6mx7ww4" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/explosion.wav" id="3_p1jbp"]
 [ext_resource type="AudioStream" uid="uid://b2epq4nirn0i8" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav" id="4_7t64k"]
