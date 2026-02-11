@@ -1,6 +1,6 @@
 # 🐛 UI 开发问题汇总
 
-> **版本**: 1.3
+> **版本**: 1.4
 > **最后更新**: 2025-02-11
 > **适用项目**: Little Knight Adventure v0.5
 > **目的**: 记录 UI 开发中遇到的常见问题和解决方案，避免重复踩坑
@@ -577,6 +577,90 @@ style.set_corner_radius_all(4) # ✅ GDScript 中可以使用
 
 **影响文件**:
 - `scenes/ui/skill_tree_ui.tscn` (已修复)
+
+---
+
+### ❌ 问题 4.6: 信号重复连接
+
+**错误信息**:
+```
+E 0:00:01:066 skill_tree_ui.gd:66 @ _ready(): Signal 'pressed' is already connected to given callable 'CanvasLayer(skill_tree_ui.gd)::_on_close_button_pressed' in that object.
+<C++ 错误> Method/function failed. Returning: ERR_INVALID_PARAMETER
+```
+
+**问题原因**:
+同一个信号在场景文件和 GDScript 代码中被连接了两次，导致重复连接错误。
+
+**❌ 错误做法**:
+
+场景文件 (`.tscn`) 中已连接：
+```gdscript
+[connection signal="pressed" from="SkillTreeControl/PanelContainer/CloseButton" to="." method="_on_close_button_pressed"]
+```
+
+GDScript (`.gd`) 中又连接：
+```gdscript
+func _ready() -> void:
+    # ❌ 错误：场景文件中已经连接了，这里重复连接
+    if close_button:
+        close_button.pressed.connect(_on_close_button_pressed)
+```
+
+**✅ 正确做法**:
+
+**方案 1：只在场景文件中连接**（推荐）
+```gdscript
+# 场景文件中的连接保持不变
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+
+# GDScript 中删除重复连接
+func _ready() -> void:
+    # 注意：关闭按钮的 pressed 信号已在场景文件中连接，无需重复连接
+    pass
+```
+
+**方案 2：只在 GDScript 中连接**
+```gdscript
+# 场景文件中删除连接（不推荐，容易遗忘）
+
+# GDScript 中连接
+func _ready() -> void:
+    if close_button:
+        close_button.pressed.connect(_on_close_button_pressed)
+```
+
+**信号连接的两种方式**:
+
+| 方式 | 适用场景 | 优点 | 缺点 |
+|-----|---------|------|------|
+| **场景文件连接** | UI 按钮、固定交互 | 可视化，易理解 | 不可见（在 .tscn 中） |
+| **代码连接** | 动态创建的节点 | 灵活，可见性强 | 需要手动管理 |
+
+**最佳实践**:
+1. **选择一种方式，不要混用**：要么都在场景中连接，要么都在代码中连接
+2. **UI 按钮推荐场景连接**：更直观，可视化编辑
+3. **动态节点使用代码连接**：无法在场景中预先连接
+4. **添加注释说明**：如果场景中已连接，在代码中添加注释提醒
+
+**如何检测重复连接**:
+```gdscript
+# 检查信号是否已连接
+if not close_button.pressed.is_connected(_on_close_button_pressed):
+    close_button.pressed.connect(_on_close_button_pressed)
+```
+
+**为什么会犯错**：
+- 场景文件中的连接不可见（在文本文件底部）
+- 习惯性地在 `_ready()` 中连接信号
+- 没有检查是否已存在连接
+
+**教训**：
+- 🟡 **严重级别** - 运行时错误，但不会导致崩溃
+- 🟢 **调试难度** - 错误信息清晰，容易定位
+- 🟢 **修复成本** - 删除重复连接即可
+
+**影响文件**:
+- `scripts/ui/skill_tree_ui.gd` (已修复)
 
 ---
 
