@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bacus37x47hj5"]
 
 [ext_resource type="PackedScene" uid="uid://dip5hs3lqmvdg" path="res://player/player.tscn" id="1_hddm4"]
-[ext_resource type="PackedScene" uid="uid://cxho3j38e50ww" path="res://fall_stone.tscn" id="2_qchbg"]
+[ext_resource type="PackedScene" uid="uid://cxho3j38e50ww" path="res://scenes/traps/falling_stone.tscn" id="2_qchbg"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_maef2"]
 

@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bmpdl8jkw4qfh" path="res://scripts/levels/dungeon.gd" id="1_kun6q"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="2_qu0b2"]
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="2_vol8w"]
-[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="3_noicg"]
+[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="3_noicg"]
 [ext_resource type="AudioStream" uid="uid://dhqyhbkwpmbt4" path="res://assets/Sprout village Assets/Sound/Winter.ogg" id="4_orq0m"]
 [ext_resource type="PackedScene" uid="uid://dt2qbtktb203n" path="res://scenes/enemies/slime_green.tscn" id="6_4f3i4"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="8_q5kms"]

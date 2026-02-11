@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="4_h4a56"]
 [ext_resource type="AudioStream" uid="uid://dgf1vor7nx7i2" path="res://assets/music/12 - Frozen Abyss.mp3" id="4_o5o3u"]
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="5_ccyuy"]
-[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="6_pbfoo"]
+[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="6_pbfoo"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="8_epd3r"]
 [ext_resource type="PackedScene" uid="uid://b8gy0m7nv1fw4" path="res://scenes/items/fruit_b.tscn" id="8_plocb"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="9_o5o3u"]

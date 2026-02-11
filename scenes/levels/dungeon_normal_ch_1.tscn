@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://dhqyhbkwpmbt4" path="res://assets/Sprout village Assets/Sound/Winter.ogg" id="3_it550"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="4_sl0cg"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="5_ks701"]
-[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="6_6lfai"]
+[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="6_6lfai"]
 [ext_resource type="PackedScene" uid="uid://k6accm1dofjy" path="res://scenes/traps/spike.tscn" id="7_q12vl"]
 [ext_resource type="PackedScene" uid="uid://yl1edpykjw4e" path="res://scenes/traps/platform_b.tscn" id="8_ldmhp"]
 [ext_resource type="Script" uid="uid://er6t0h35hv7e" path="res://scripts/traps/active_platform.gd" id="9_ldmhp"]

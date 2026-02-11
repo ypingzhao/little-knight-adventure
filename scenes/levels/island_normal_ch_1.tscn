@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=4 uid="uid://d1woamshwmbo4"]
 
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_k1gkf"]
-[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="2_mtf8p"]
+[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="2_mtf8p"]
 [ext_resource type="PackedScene" uid="uid://bvre61c8p2ixw" path="res://scenes/items/box.tscn" id="3_uo0kn"]
 [ext_resource type="PackedScene" uid="uid://1676ljpacqdv" path="res://scenes/items/health_pot.tscn" id="4_vwemr"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="5_vwemr"]

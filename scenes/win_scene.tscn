@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="4_7yt3q"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="5_1a68o"]
 [ext_resource type="AudioStream" uid="uid://cfrbscuq8hsx5" path="res://assets/music/20 - The Journey.mp3" id="5_b6ng8"]
-[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="7_qcp0s"]
+[ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="7_qcp0s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p78a6"]
 font_size = 32
