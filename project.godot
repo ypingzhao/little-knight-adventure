@@ -22,6 +22,7 @@ PlayerHealth="*res://scripts/actors/player/player_health.gd"
 LevelManager="*res://scripts/managers/level_manager.gd"
 ShopUI="*res://scenes/shop_ui.tscn"
 TradeItemList="*res://scripts/autoload/trade_item_list.gd"
+SkillTreeManager="*res://scripts/autoload/skill_tree_manager.gd"
 
 [display]
 
