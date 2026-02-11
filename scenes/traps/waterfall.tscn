@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://werxmltrbusa"]
 
 [ext_resource type="Texture2D" uid="uid://5be5gi2hrbxw" path="res://assets/waterfall/W1001.png" id="1_0vwjs"]
-[ext_resource type="Script" uid="uid://ciebrqycue2bj" path="res://scenes/traps/waterfall.gd" id="1_m21ke"]
+[ext_resource type="Script" uid="uid://ciebrqycue2bj" path="res://scripts/traps/waterfall.gd" id="1_m21ke"]
 [ext_resource type="Texture2D" uid="uid://phgmataohmqv" path="res://assets/waterfall/W1002.png" id="2_m21ke"]
 [ext_resource type="Texture2D" uid="uid://bud5q3jrbnvu7" path="res://assets/waterfall/W1003.png" id="3_1mfo0"]
 [ext_resource type="Texture2D" uid="uid://ci2e5m7g1lmrj" path="res://assets/waterfall/W1004.png" id="4_lb5wp"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=4 uid="uid://h7y0pnty6wvw"]
 
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_20ac1"]
-[ext_resource type="Script" uid="uid://c03yfgoa34cv8" path="res://scenes/boss_01_scene.gd" id="1_ujhkj"]
+[ext_resource type="Script" uid="uid://c03yfgoa34cv8" path="res://scripts/levels/boss_arena.gd" id="1_ujhkj"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="2_i7fcq"]
 [ext_resource type="PackedScene" uid="uid://d3be27xqupv8d" path="res://scenes/enemies/slime_purple.tscn" id="3_inwwd"]
 [ext_resource type="AudioStream" uid="uid://yr4vd0w74kco" path="res://assets/music/05 - Battle 1.mp3" id="4_sow1i"]
