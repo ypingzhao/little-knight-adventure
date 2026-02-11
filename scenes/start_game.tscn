@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://dntp3vnewdr15"]
+[gd_scene load_steps=24 format=3 uid="uid://dntp3vnewdr15"]
 
 [ext_resource type="Texture2D" uid="uid://c7mpobee22vr0" path="res://assets/brackeys_platformer_assets/Background.png" id="1_c75kr"]
 [ext_resource type="Script" uid="uid://db7kuj6r1ubhg" path="res://scripts/ui/start_menu.gd" id="1_wcjs8"]
 [ext_resource type="Texture2D" uid="uid://hsu5rvigstmb" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png" id="2_tq2sd"]
 [ext_resource type="AudioStream" uid="uid://bua4870kt7jbl" path="res://assets/music/04 - Silent Forest.mp3" id="3_2aiwh"]
+[ext_resource type="PackedScene" path="res://scenes/ui/skill_tree_ui.tscn" id="4_skilltree"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_c75kr"]
 font_size = 32
@@ -147,10 +148,10 @@ offset_bottom = 40.0
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control"]
 layout_mode = 0
-offset_left = 213.0
+offset_left = 201.0
 offset_top = 156.0
-offset_right = 260.0
-offset_bottom = 196.0
+offset_right = 284.0
+offset_bottom = 234.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/MarginContainer"]
 layout_mode = 2
@@ -184,13 +185,13 @@ text = "Little Knight Adventure"
 label_settings = SubResource("LabelSettings_c75kr")
 
 [node name="KnigtLeft" type="AnimatedSprite2D" parent="."]
-position = Vector2(186, 170)
+position = Vector2(174, 170)
 sprite_frames = SubResource("SpriteFrames_7wif6")
 autoplay = "default"
 frame_progress = 0.90314156
 
 [node name="KnigtRight" type="AnimatedSprite2D" parent="."]
-position = Vector2(289, 170)
+position = Vector2(313, 170)
 scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_7wif6")
 autoplay = "default"
@@ -201,6 +202,8 @@ stream = ExtResource("3_2aiwh")
 volume_db = -10.297
 autoplay = true
 parameters/looping = true
+
+[node name="SkillTreeUI" parent="." instance=ExtResource("4_skilltree")]
 
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/ButtonPlay" to="." method="_on_button_play_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/MarginContainer/VBoxContainer/ButtonUpgrade" to="." method="_on_button_upgrade_pressed"]
