@@ -16,12 +16,12 @@ config/features=PackedStringArray("4.5", "Forward Plus")
 
 [autoload]
 
-GlobalData="*res://Global.gd"
-SaveLoad="*res://Scripts/save_system.gd"
-PlayerHealth="*res://player/scripts/player_health.gd"
-LevelManager="*res://Scripts/managers/level_manager.gd"
+GlobalData="*res://scripts/autoload/global_data.gd"
+SaveLoad="*res://scripts/autoload/save_system.gd"
+PlayerHealth="*res://scripts/actors/player/player_health.gd"
+LevelManager="*res://scripts/managers/level_manager.gd"
 ShopUI="*res://scenes/shop_ui.tscn"
-TradeItemList="*res://Scripts/autoload/trade_item_list.gd"
+TradeItemList="*res://scripts/autoload/trade_item_list.gd"
 
 [display]
 
