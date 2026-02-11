@@ -1,6 +1,6 @@
 [gd_scene load_steps=15 format=3 uid="uid://c2m8drm0854op"]
 
-[ext_resource type="Script" uid="uid://cfyglc0jnste6" path="res://scripts/actors/enemies/bat.gd" id="1_5m14n"]
+[ext_resource type="Script" uid="uid://cf4nlx126l33p" path="res://scripts/actors/enemies/bat.gd" id="1_5m14n"]
 [ext_resource type="Texture2D" uid="uid://duhgi34px66oq" path="res://assets/bat/Bat_Sprite_Sheet.png" id="1_rt4uy"]
 [ext_resource type="AudioStream" uid="uid://b2epq4nirn0i8" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav" id="2_4k4o5"]
 

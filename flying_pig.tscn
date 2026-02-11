@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://bkyfxyiif2qp7"]
 
 [ext_resource type="Texture2D" uid="uid://do1rd11yxh4u6" path="res://assets/Kings and Pigs Sprites/03-Pig/Run (34x28).png" id="1_82hfu"]
-[ext_resource type="Script" uid="uid://8yljrdb2nrlj" path="res://scripts/actors/npc/flying_pig.gd" id="1_xg7cy"]
+[ext_resource type="Script" uid="uid://rros263s02j" path="res://scripts/actors/npc/flying_pig.gd" id="1_xg7cy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg7cy"]
 atlas = ExtResource("1_82hfu")

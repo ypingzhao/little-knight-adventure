@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://mu2oyfm7lqyk"]
 
-[ext_resource type="Script" uid="uid://b3se5x4xqh2qh" path="res://scripts/traps/falling_stone.gd" id="1_kpikh"]
+[ext_resource type="Script" uid="uid://b146j3k8ias2p" path="res://scripts/traps/falling_stone.gd" id="1_kpikh"]
 [ext_resource type="AudioStream" uid="uid://dsktr3d4reo4a" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/coin.wav" id="2_csu5u"]
 [ext_resource type="Texture2D" uid="uid://cbpgvn4uh3jqh" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/world_tileset.png" id="2_kpikh"]
 

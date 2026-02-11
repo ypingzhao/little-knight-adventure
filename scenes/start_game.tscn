@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=3 uid="uid://dntp3vnewdr15"]
 
 [ext_resource type="Texture2D" uid="uid://c7mpobee22vr0" path="res://assets/brackeys_platformer_assets/Background.png" id="1_c75kr"]
-[ext_resource type="Script" uid="uid://dv7ghi5g20u7t" path="res://scripts/ui/start_menu.gd" id="1_wcjs8"]
+[ext_resource type="Script" uid="uid://db7kuj6r1ubhg" path="res://scripts/ui/start_menu.gd" id="1_wcjs8"]
 [ext_resource type="Texture2D" uid="uid://hsu5rvigstmb" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/knight.png" id="2_tq2sd"]
 [ext_resource type="AudioStream" uid="uid://bua4870kt7jbl" path="res://assets/music/04 - Silent Forest.mp3" id="3_2aiwh"]
 

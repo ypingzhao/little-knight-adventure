@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dva2rb47v5lb7"]
 
 [ext_resource type="Texture2D" uid="uid://qj2581dfsd6f" path="res://assets/sword.png" id="1_76q7b"]
-[ext_resource type="Script" uid="uid://bpe8ei76wgxr2" path="res://scripts/items/sword.gd" id="1_i5ed0"]
+[ext_resource type="Script" uid="uid://c5ib0j8ixyygq" path="res://scripts/items/sword.gd" id="1_i5ed0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_76q7b"]
 size = Vector2(10.25, 10.25)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=4 uid="uid://b0lxxrqsywtdh"]
 
-[ext_resource type="Script" uid="uid://cak8w0cl7xqy0" path="res://scripts/levels/oscar_adventure.gd" id="1_4e0ak"]
+[ext_resource type="Script" uid="uid://beb38dl7x30x3" path="res://scripts/levels/oscar_adventure.gd" id="1_4e0ak"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="3_pbfoo"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="4_h4a56"]
 [ext_resource type="AudioStream" uid="uid://dgf1vor7nx7i2" path="res://assets/music/12 - Frozen Abyss.mp3" id="4_o5o3u"]

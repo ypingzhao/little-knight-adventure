@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://kill_zone.tscn" id="6_6lfai"]
 [ext_resource type="PackedScene" uid="uid://k6accm1dofjy" path="res://scenes/traps/spike.tscn" id="7_q12vl"]
 [ext_resource type="PackedScene" uid="uid://yl1edpykjw4e" path="res://scenes/traps/platform_b.tscn" id="8_ldmhp"]
-[ext_resource type="Script" uid="uid://bt3xssohflnqq" path="res://scripts/traps/active_platform.gd" id="9_ldmhp"]
+[ext_resource type="Script" uid="uid://er6t0h35hv7e" path="res://scripts/traps/active_platform.gd" id="9_ldmhp"]
 [ext_resource type="PackedScene" uid="uid://c17uprknw3yfl" path="res://scenes/items/treasure_box.tscn" id="10_pf73d"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="11_q8wk0"]
 [ext_resource type="PackedScene" uid="uid://c2m8drm0854op" path="res://scenes/enemies/bat.tscn" id="12_djhp1"]

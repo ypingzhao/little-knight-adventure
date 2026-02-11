@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dllyflhbfxcoj" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/fruit.png" id="1_db73m"]
 [ext_resource type="AudioStream" uid="uid://hkyouygefdt1" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/power_up.wav" id="2_lb0nx"]
-[ext_resource type="Script" uid="uid://cn8o0mdnotmo0" path="res://scripts/components/interaction_area.gd" id="2_uqyqf"]
+[ext_resource type="Script" uid="uid://b4dlhunni8m7g" path="res://scripts/components/interaction_area.gd" id="2_uqyqf"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_db73m"]
 radius = 6.0

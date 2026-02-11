@@ -1,7 +1,7 @@
 [gd_scene load_steps=16 format=3 uid="uid://dt2qbtktb203n"]
 
 [ext_resource type="Texture2D" uid="uid://cuj62vc30hum0" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/slime_green.png" id="1_mwm88"]
-[ext_resource type="Script" uid="uid://bs07w5jexn0lw" path="res://scripts/actors/enemies/slime_green.gd" id="1_p8al1"]
+[ext_resource type="Script" uid="uid://dma1kajv4k252" path="res://scripts/actors/enemies/slime_green.gd" id="1_p8al1"]
 [ext_resource type="AudioStream" uid="uid://b2epq4nirn0i8" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav" id="3_0rhbn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mwm88"]

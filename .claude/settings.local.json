@@ -32,7 +32,15 @@
       "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/health_pot\\\\.gd\"\"|path=\"\"res://scripts/items/health_potion.gd\"\"|g' scenes/items/health_pot.tscn)",
       "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/sword\\\\.gd\"\"|path=\"\"res://scripts/items/sword.gd\"\"|g' scenes/items/sword.tscn)",
       "Bash(__NEW_LINE_a61c7747b343ba62__ sed -i 's|path=\"\"res://Scripts/platform_a_active\\\\.gd\"\"|path=\"\"res://scripts/traps/active_platform.gd\"\"|g' scenes/levels/dungeon_normal_ch_1.tscn)",
-      "Bash(__NEW_LINE_a61c7747b343ba62__ echo \"✅ 所有剩余场景文件路径已更新\")"
+      "Bash(__NEW_LINE_a61c7747b343ba62__ echo \"✅ 所有剩余场景文件路径已更新\")",
+      "Bash(python:*)",
+      "Bash(for:*)",
+      "Bash(do if grep -q \"res://scripts/\" \"$file\")",
+      "Bash(then echo \"检查 $file:\" grep \"res://scripts/.*\\\\.gd\" \"$file\")",
+      "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/b3se5x4xqh2qh\"\"/uid=\"\"uid:\\\\/\\\\/b146j3k8ias2p\"\"/g' fall_stone.tscn)",
+      "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/8yljrdb2nrlj\"\"/uid=\"\"uid:\\\\/\\\\/rros263s02j\"\"/g' flying_pig.tscn)",
+      "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/h088x803o47g\"\"/uid=\"\"uid:\\\\/\\\\/cid6ef01fw8m4\"\"/g' GlobalData.tscn)",
+      "Bash(__NEW_LINE_01b4433016affad8__ echo \"✅ 已修复根目录下的3个场景文件\")"
     ]
   }
 }
