@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://d3be27xqupv8d"]
 
-[ext_resource type="Script" uid="uid://dir5psjxcarl1" path="res://scripts/actors/enemies/slime_boss.gd" id="1_1iatm"]
+[ext_resource type="Script" path="res://scenes/enemies/boss_slime_purple/slime_purple_boss.gd" id="1_1iatm"]
 [ext_resource type="Texture2D" uid="uid://cjtsuywdv4fau" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/slime_purple.png" id="1_versd"]
 [ext_resource type="PackedScene" uid="uid://dt2qbtktb203n" path="res://scenes/enemies/slime_green.tscn" id="2_ujtmk"]
 [ext_resource type="AudioStream" uid="uid://b2epq4nirn0i8" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sounds/hurt.wav" id="4_vmxw6"]

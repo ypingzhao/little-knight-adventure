@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_20ac1"]
 [ext_resource type="Script" uid="uid://durjmqg1phwhx" path="res://scripts/levels/boss_arena.gd" id="1_ujhkj"]
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="2_i7fcq"]
-[ext_resource type="PackedScene" uid="uid://d3be27xqupv8d" path="res://scenes/enemies/slime_purple.tscn" id="3_inwwd"]
+[ext_resource type="PackedScene" uid="uid://d3be27xqupv8d" path="res://scenes/enemies/boss_slime_purple/slime_purple.tscn" id="3_inwwd"]
 [ext_resource type="AudioStream" uid="uid://yr4vd0w74kco" path="res://assets/music/05 - Battle 1.mp3" id="4_sow1i"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="5_pnqad"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="7_loal8"]
@@ -22,6 +22,7 @@ position = Vector2(60, 206)
 
 [node name="SlimePurple" parent="." instance=ExtResource("3_inwwd")]
 position = Vector2(344, 240)
+script = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sow1i")
