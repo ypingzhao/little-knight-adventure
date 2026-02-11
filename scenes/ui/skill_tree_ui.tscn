@@ -4,7 +4,7 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_Panel"]
 bg_color = Color(0.15, 0.15, 0.2, 0.95)
-border_color = Color(0.5, 0.5, 0.6)
+border_color = Color(0.5, 0.5, 0.6, 1.0)
 set_border_width_all(3)
 set_corner_radius_all(10)
 
