@@ -22,7 +22,6 @@ position = Vector2(60, 206)
 
 [node name="SlimePurple" parent="." instance=ExtResource("3_inwwd")]
 position = Vector2(344, 240)
-script = null
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_sow1i")
