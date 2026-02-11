@@ -40,7 +40,32 @@
       "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/b3se5x4xqh2qh\"\"/uid=\"\"uid:\\\\/\\\\/b146j3k8ias2p\"\"/g' fall_stone.tscn)",
       "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/8yljrdb2nrlj\"\"/uid=\"\"uid:\\\\/\\\\/rros263s02j\"\"/g' flying_pig.tscn)",
       "Bash(__NEW_LINE_01b4433016affad8__ sed -i 's/uid=\"\"uid:\\\\/\\\\/h088x803o47g\"\"/uid=\"\"uid:\\\\/\\\\/cid6ef01fw8m4\"\"/g' GlobalData.tscn)",
-      "Bash(__NEW_LINE_01b4433016affad8__ echo \"✅ 已修复根目录下的3个场景文件\")"
+      "Bash(__NEW_LINE_01b4433016affad8__ echo \"✅ 已修复根目录下的3个场景文件\")",
+      "Bash(__NEW_LINE_bbf6e0593a0998e7__ echo \"检查移动后的文件是否存在：\")",
+      "Bash(__NEW_LINE_bbf6e0593a0998e7__ ls -lh scenes/traps/kill_zone.tscn scenes/traps/falling_stone.tscn scenes/NPC/flying_pig.tscn)",
+      "Bash(__NEW_LINE_a13680f009e62ec4__ echo \"=== 验证场景文件引用 ===\")",
+      "Bash(__NEW_LINE_a13680f009e62ec4__ echo \"\")",
+      "Bash(__NEW_LINE_a13680f009e62ec4__ echo \"1. kill_zone.tscn 引用（应为 scenes/traps/kill_zone.tscn）：\")",
+      "Bash(__NEW_LINE_a13680f009e62ec4__ grep -r \"kill_zone\\\\.tscn\" scenes/ --include=\"*.tscn\")",
+      "Bash(__NEW_LINE_1035ead29c96e3c2__ echo \"\")",
+      "Bash(__NEW_LINE_1035ead29c96e3c2__ echo \"2. flying_pig.tscn 引用（应为 scenes/NPC/flying_pig.tscn）：\")",
+      "Bash(__NEW_LINE_1035ead29c96e3c2__ grep -r \"flying_pig\\\\.tscn\" scenes/ --include=\"*.tscn\")",
+      "Bash(__NEW_LINE_962d39bca7368480__ echo \"\")",
+      "Bash(__NEW_LINE_962d39bca7368480__ echo \"3. falling_stone.tscn 引用（应为 scenes/traps/falling_stone.tscn）：\")",
+      "Bash(__NEW_LINE_962d39bca7368480__ grep -r \"falling_stone\\\\.tscn\" scenes/ --include=\"*.tscn\")",
+      "Bash(__NEW_LINE_1c4dd4b48419837d__ echo \"=== 搜索所有 class_name 定义 ===\")",
+      "Bash(__NEW_LINE_1c4dd4b48419837d__ grep -r \"class_name\" --include=\"*.gd\" .)",
+      "Bash(__NEW_LINE_4b5c28e4c880fd77__ echo \"确认新位置文件存在：\")",
+      "Bash(__NEW_LINE_4b5c28e4c880fd77__ ls -lh scripts/actors/enemies/bat.gd scripts/actors/enemies/slime_boss.gd scripts/autoload/save_system.gd)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ echo \"删除旧位置的脚本文件...\")",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -rf scripts/enemies/)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -f scripts/chat_bubble.gd scripts/coin.gd scripts/health_pot.gd scripts/HUD.gd)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -f scripts/knight.gd scripts/oscar_adventure.gd scripts/platform_a_active.gd)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -f scripts/save_system.gd scripts/shop.gd scripts/shop_keeper.gd scripts/shop_ui.gd)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -f scripts/slime_purple_boss.gd scripts/start_game.gd scripts/sword.gd)",
+      "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ echo \"✅ 旧文件已删除\")",
+      "Bash(__NEW_LINE_7018cd76b7fc21b9__ echo \"=== 新位置的 class_name 定义 ===\")",
+      "Bash(__NEW_LINE_7018cd76b7fc21b9__ grep -r \"class_name\" --include=\"*.gd\" scripts/actors/ scripts/items/ scripts/levels/)"
     ]
   }
 }
