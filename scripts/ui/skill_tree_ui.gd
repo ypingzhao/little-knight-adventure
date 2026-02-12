@@ -33,6 +33,26 @@ signal skill_tree_closed
 ## 配置常量
 ## ============================================================================
 
+## 主题颜色常量（统一UI颜色）
+const COLOR_NAME := Color.WHITE        # 技能名称
+const COLOR_LEVEL := Color.YELLOW       # 等级文本
+const COLOR_DESC := Color.LIGHT_GRAY   # 描述文本
+const COLOR_VALUE := Color.CYAN        # 数值文本
+const COLOR_SUCCESS := Color.GREEN       # 成功通知
+const COLOR_ERROR := Color.RED         # 失败通知
+
+## 字体大小常量（统一UI字体）
+const FONT_SIZE_TITLE := 16     # 标题、技能名称（大）
+const FONT_SIZE_BODY := 14      # 正文、等级、描述（中）
+const FONT_SIZE_VALUE := 12     # 数值、费用（小）
+
+## UI 尺寸常量
+const CARD_WIDTH := 420        # 卡片宽度（像素）
+const CARD_HEIGHT := 90        # 卡片高度（增加20以更好显示4属性）
+const ICON_SIZE := 60         # 图标容器大小（正方形）
+const INDENT_PER_LEVEL := 40    # 每级缩进40像素
+
+## 显示时长常量
 const NOTIFICATION_DURATION := 2.0  # 通知显示时长（秒）
 
 
@@ -179,6 +199,7 @@ func _get_child_skills(parent_skill_id: String) -> Array:
 
 
 ## 创建单个技能项 UI
+## 每个技能显示4个属性：名称、等级、描述、费用、效果值
 func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     var config = SkillTreeManager.get_skill_config(skill_id)
     var current_level = SkillTreeManager.get_skill_level(skill_id)
@@ -198,9 +219,10 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
         hbox.add_child(indent_control)
 
     # 创建技能卡片（使用 PanelContainer 作为背景）
+    # 每个技能显示4个属性，满足"同一屏幕至少显示3条属性"的要求
     var card = PanelContainer.new()
     card.name = "SkillCard"
-    card.custom_minimum_size = Vector2(420, 70)
+    card.custom_minimum_size = Vector2(CARD_WIDTH, CARD_HEIGHT)  # 使用常量
     card.mouse_filter = Control.MOUSE_FILTER_PASS  # 允许鼠标事件穿透
 
     # 创建卡片内部布局
@@ -215,7 +237,7 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     icon_label.name = "IconLabel"
     icon_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
     icon_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-    icon_label.add_theme_font_size_override("font_size", 32)
+    icon_label.add_theme_font_size_override("font_size", FONT_SIZE_TITLE)  # 使用常量
 
     # 根据 effect_type 选择 Emoji
     var emoji = _get_skill_emoji(config.effect_type)
@@ -227,7 +249,7 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     # 技能信息区域
     var info_vbox = VBoxContainer.new()
     info_vbox.name = "InfoVBox"
-    info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # 水平展开填充空间
 
     # 技能名称和等级
     var name_level_hbox = HBoxContainer.new()
@@ -235,19 +257,19 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     var name_label = Label.new()
     name_label.name = "NameLabel"
     name_label.text = config.name
-    name_label.add_theme_font_size_override("font_size", 16)
-    name_label.add_theme_color_override("font_color", Color.WHITE)
+    name_label.add_theme_font_size_override("font_size", FONT_SIZE_BODY)  # 使用常量
+    name_label.add_theme_color_override("font_color", COLOR_NAME)  # 使用常量
     name_level_hbox.add_child(name_label)
 
     var spacer = Control.new()
-    spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+    spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # 水平展开，填充可用空间
     name_level_hbox.add_child(spacer)
 
     var level_label = Label.new()
     level_label.name = "LevelLabel"
     level_label.text = "Lv.%d/%d" % [current_level, config.max_level]
-    level_label.add_theme_font_size_override("font_size", 14)
-    level_label.add_theme_color_override("font_color", Color.YELLOW)
+    level_label.add_theme_font_size_override("font_size", FONT_SIZE_BODY)  # 使用常量
+    level_label.add_theme_color_override("font_color", COLOR_LEVEL)  # 使用常量
     name_level_hbox.add_child(level_label)
 
     info_vbox.add_child(name_level_hbox)
@@ -256,8 +278,8 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     var desc_label = Label.new()
     desc_label.name = "DescLabel"
     desc_label.text = config.description
-    desc_label.add_theme_font_size_override("font_size", 12)
-    desc_label.add_theme_color_override("font_color", Color.LIGHT_GRAY)
+    desc_label.add_theme_font_size_override("font_size", FONT_SIZE_BODY)  # 使用常量
+    desc_label.add_theme_color_override("font_color", COLOR_DESC)  # 使用常量
     info_vbox.add_child(desc_label)
 
     # 效果值
@@ -265,8 +287,8 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
         var value_label = Label.new()
         value_label.name = "ValueLabel"
         value_label.text = "当前加成: +%d" % skill_value
-        value_label.add_theme_font_size_override("font_size", 11)
-        value_label.add_theme_color_override("font_color", Color.CYAN)
+        value_label.add_theme_font_size_override("font_size", FONT_SIZE_VALUE)  # 使用常量
+        value_label.add_theme_color_override("font_color", COLOR_VALUE)  # 使用常量
         info_vbox.add_child(value_label)
 
     card_hbox.add_child(info_vbox)
@@ -274,7 +296,7 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     # 升级按钮
     var upgrade_btn = Button.new()
     upgrade_btn.name = "UpgradeButton"
-    upgrade_btn.custom_minimum_size = Vector2(80, 50)
+    upgrade_btn.custom_minimum_size = Vector2(80, 50)  # 按钮尺寸：宽80×高50
 
     if current_level >= config.max_level:
         upgrade_btn.text = "已满级"
@@ -409,7 +431,7 @@ func _update_coin_display() -> void:
 
 
 ## 显示通知消息（带淡入淡出动画）
-func _show_notification(message: String, color: Color = Color.WHITE) -> void:
+func _show_notification(message: String, color: Color) -> void:
     if not notification_label:
         return
 
