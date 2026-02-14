@@ -66,8 +66,11 @@ func _physics_process(delta):
     sprite.rotation_degrees += 360 * delta * direction
 
 func _on_hit(area:Area2D)->void:
-    if area.get_parent().is_in_group("enemy"):
-        # 让敌人受伤（假设敌人提供 take_damage）
-        area.get_parent().take_damage(1)
+    var parent = area.get_parent()
+    # 检查父节点是否存在并且有 take_damage 方法
+    if parent and parent.has_method("take_damage"):
+        # 让敌人受伤（使用玩家的总攻击力）
+        var damage = GlobalData.get_total_attack()
+        parent.take_damage(damage)
         # 一把剑只触发一次（可选）
         hit_box.set_deferred("monitoring", false)

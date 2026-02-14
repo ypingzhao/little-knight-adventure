@@ -91,7 +91,7 @@ func die()->void:
     dead_sound.play()
     animated_sprite.play("die")
     await animated_sprite.animation_finished
-    get_tree().change_scene_to_file("res://scenes/start_game.tscn")
+    get_tree().change_scene_to_file("res://scenes/result_scene.tscn")
 
 func _unhandled_input(_event):
     if dead:return

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://d1woamshwmbo4"]
+[gd_scene load_steps=22 format=4 uid="uid://d1woamshwmbo4"]
 
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_k1gkf"]
 [ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="2_mtf8p"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://er6t0h35hv7e" path="res://scripts/traps/active_platform.gd" id="11_l1mqc"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="12_htiap"]
 [ext_resource type="PackedScene" uid="uid://l6dia2lnjljn" path="res://scenes/enemies/bat_spawner.tscn" id="13_gshgv"]
+[ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="14_wd5tv"]
 
 [sub_resource type="Animation" id="Animation_l1mqc"]
 length = 0.001
@@ -216,5 +217,67 @@ debug_color = Color(0.775496, 0.24684623, 0.8988403, 0.41960785)
 
 [node name="BatSpawner" parent="." instance=ExtResource("13_gshgv")]
 spawn_interval = 8.0
+
+[node name="Coins" type="Node" parent="."]
+
+[node name="coin" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(88, 194)
+
+[node name="coin2" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(120, 160)
+
+[node name="coin3" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(152, 128)
+
+[node name="coin4" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(264, 80)
+
+[node name="coin5" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(408, 160)
+
+[node name="coin6" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(488, 160)
+
+[node name="coin7" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(320, 248)
+
+[node name="coin8" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1160, 168)
+
+[node name="coin9" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1224, 168)
+
+[node name="coin10" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1272, 168)
+
+[node name="coin11" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1320, 168)
+
+[node name="coin12" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1416, 80)
+
+[node name="coin13" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1544, 16)
+
+[node name="coin14" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1544, 224)
+
+[node name="coin15" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1496, 224)
+
+[node name="coin16" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1624, 224)
+
+[node name="coin17" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1624, 168)
+
+[node name="coin18" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1624, 120)
+
+[node name="coin19" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1624, 80)
+
+[node name="coin20" parent="Coins" instance=ExtResource("14_wd5tv")]
+position = Vector2(1624, 40)
 
 [connection signal="body_entered" from="PlatformA2/Area2D" to="PlatformA2" method="_on_area_2d_body_entered"]

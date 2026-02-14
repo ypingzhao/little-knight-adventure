@@ -1,6 +1,10 @@
 extends CanvasLayer
 
 ## ============================================================================
+## 可以正常修改文件。来测试
+## ============================================================================
+
+## ============================================================================
 ## 技能树 UI 管理器
 ## ============================================================================
 ## 功能：显示和交互技能树界面
@@ -21,9 +25,9 @@ signal skill_tree_closed
 ## ============================================================================
 
 @onready var ui_control: Control = $SkillTreeControl
+@onready var reset_button: Button = $ResetButton
 @onready var title_label: Label = $SkillTreeControl/PanelContainer/VBoxContainer/TitleBar/HBoxContainer/TitleLabel
 @onready var coin_label: Label = $SkillTreeControl/PanelContainer/VBoxContainer/TitleBar/HBoxContainer/CoinLabel
-@onready var close_button: Button = $SkillTreeControl/PanelContainer/CloseButton
 @onready var notification_label: Label = $SkillTreeControl/PanelContainer/VBoxContainer/NotificationLabel
 @onready var scroll_container: ScrollContainer = $SkillTreeControl/PanelContainer/VBoxContainer/ScrollContainer
 @onready var skills_container: VBoxContainer = $SkillTreeControl/PanelContainer/VBoxContainer/ScrollContainer/SkillsVBox
@@ -81,8 +85,9 @@ func _ready() -> void:
     if ui_control:
         ui_control.visible = false
 
-    # 注意：关闭按钮的 pressed 信号已在场景文件中连接，无需重复连接
-    # [connection signal="pressed" from="SkillTreeControl/PanelContainer/CloseButton" to="." method="_on_close_button_pressed"]
+    # 连接重置按钮
+    if reset_button:
+        reset_button.pressed.connect(_on_reset_button_pressed)
 
     # 连接技能树管理器信号
     SkillTreeManager.skill_upgraded.connect(_on_skill_upgraded)
@@ -112,6 +117,10 @@ func _open_skill_tree() -> void:
     if ui_control:
         ui_control.visible = true
 
+    # 显示重置按钮
+    if reset_button:
+        reset_button.visible = true
+
     # 更新金币显示
     _update_coin_display()
 
@@ -129,6 +138,10 @@ func _open_skill_tree() -> void:
 func _close_skill_tree() -> void:
     if ui_control:
         ui_control.visible = false
+
+    # 隐藏重置按钮
+    if reset_button:
+        reset_button.visible = false
 
     # 恢复玩家控制
     _enable_player_control()
@@ -172,11 +185,7 @@ func _get_root_skills() -> Array:
 
 ## 递归创建技能树
 func _create_skill_tree_recursive(skill_id: String, depth: int) -> void:
-    # 检查技能是否已解锁
-    if not SkillTreeManager.is_skill_unlocked(skill_id):
-        return
-
-    # 创建技能项
+    # 创建技能项（所有技能都显示）
     var skill_item = _create_skill_item(skill_id, depth)
     skills_container.add_child(skill_item)
 
@@ -205,6 +214,16 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     var current_level = SkillTreeManager.get_skill_level(skill_id)
     var upgrade_cost = SkillTreeManager.get_upgrade_cost(skill_id)
     var skill_value = SkillTreeManager.get_skill_value(skill_id)
+
+    # 检查是否满足前置条件
+    var is_locked = false
+    var lock_message = ""
+    if config.unlock_condition != "":
+        var prereq_level = SkillTreeManager.get_skill_level(config.unlock_condition)
+        if prereq_level == 0:
+            is_locked = true
+            var prereq_config = SkillTreeManager.get_skill_config(config.unlock_condition)
+            lock_message = "需要 %s Lv.1" % prereq_config.name
 
     # 创建容器
     var hbox = HBoxContainer.new()
@@ -249,16 +268,21 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     # 技能信息区域
     var info_vbox = VBoxContainer.new()
     info_vbox.name = "InfoVBox"
-    info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # 水平展开填充空间
+    info_vbox.size_flags_horizontal = Control.SIZE_EXPAND_FILL  # 水平展开填充空间  # 水平展开填充空间
 
     # 技能名称和等级
     var name_level_hbox = HBoxContainer.new()
 
+    # 技能名称（锁定时显示锁图标）
     var name_label = Label.new()
     name_label.name = "NameLabel"
-    name_label.text = config.name
+    if is_locked:
+        name_label.text = "🔒 %s" % config.name
+        name_label.add_theme_color_override("font_color", Color.GRAY)  # 锁定状态为灰色
+    else:
+        name_label.text = config.name
+        name_label.add_theme_color_override("font_color", COLOR_NAME)  # 使用常量
     name_label.add_theme_font_size_override("font_size", FONT_SIZE_BODY)  # 使用常量
-    name_label.add_theme_color_override("font_color", COLOR_NAME)  # 使用常量
     name_level_hbox.add_child(name_label)
 
     var spacer = Control.new()
@@ -277,19 +301,35 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     # 技能描述
     var desc_label = Label.new()
     desc_label.name = "DescLabel"
-    desc_label.text = config.description
+    if is_locked:
+        desc_label.text = lock_message
+        desc_label.add_theme_color_override("font_color", Color.RED)  # 锁定提示为红色
+    else:
+        desc_label.text = config.description
+        desc_label.add_theme_color_override("font_color", COLOR_DESC)  # 使用常量
     desc_label.add_theme_font_size_override("font_size", FONT_SIZE_BODY)  # 使用常量
-    desc_label.add_theme_color_override("font_color", COLOR_DESC)  # 使用常量
     info_vbox.add_child(desc_label)
 
-    # 效果值
-    if skill_value > 0:
-        var value_label = Label.new()
-        value_label.name = "ValueLabel"
-        value_label.text = "当前加成: +%d" % skill_value
-        value_label.add_theme_font_size_override("font_size", FONT_SIZE_VALUE)  # 使用常量
-        value_label.add_theme_color_override("font_color", COLOR_VALUE)  # 使用常量
-        info_vbox.add_child(value_label)
+    # 效果值标签（所有技能都显示，包括等级0时显示+0）
+    var effect_value_label = Label.new()
+    effect_value_label.name = "EffectValueLabel"
+    effect_value_label.add_theme_font_size_override("font_size", FONT_SIZE_VALUE)  # 小字体
+    effect_value_label.add_theme_color_override("font_color", COLOR_VALUE)  # 使用常量（青色）
+
+    # 根据效果类型显示不同的文本
+    match config.effect_type:
+        "increase_max_health":
+            effect_value_label.text = "最大生命: +%d" % skill_value
+        "increase_attack":
+            effect_value_label.text = "攻击力: +%d" % skill_value
+        "increase_speed":
+            effect_value_label.text = "移动速度: +%d" % skill_value
+        "increase_critical_chance":
+            effect_value_label.text = "暴击率: +%d%%" % skill_value
+        _:
+            effect_value_label.text = "加成: +%d" % skill_value
+
+    info_vbox.add_child(effect_value_label)
 
     card_hbox.add_child(info_vbox)
 
@@ -298,10 +338,17 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     upgrade_btn.name = "UpgradeButton"
     upgrade_btn.custom_minimum_size = Vector2(80, 50)  # 按钮尺寸：宽80×高50
 
-    if current_level >= config.max_level:
+    if is_locked:
+        # 锁定状态
+        upgrade_btn.text = "🔒"
+        upgrade_btn.disabled = true
+        upgrade_btn.tooltip_text = lock_message
+    elif current_level >= config.max_level:
+        # 已满级
         upgrade_btn.text = "已满级"
         upgrade_btn.disabled = true
     else:
+        # 正常状态
         upgrade_btn.text = "%d💰" % upgrade_cost
 
         # 检查金币是否足够
@@ -319,7 +366,7 @@ func _create_skill_item(skill_id: String, depth: int) -> HBoxContainer:
     hbox.add_child(card)
 
     # 添加鼠标悬停效果
-    _setup_hover_effect(card, upgrade_btn)
+    _setup_hover_effect(card, upgrade_btn, is_locked)
 
     return hbox
 
@@ -340,17 +387,33 @@ func _get_skill_emoji(effect_type: String) -> String:
 
 
 ## 设置鼠标悬停效果
-func _setup_hover_effect(card: PanelContainer, button: Button) -> void:
+func _setup_hover_effect(card: PanelContainer, button: Button, is_locked: bool = false) -> void:
     # 创建 StyleBox 用于高亮效果
     var normal_style = StyleBoxFlat.new()
-    normal_style.bg_color = Color(0.2, 0.2, 0.3, 0.9)
-    normal_style.border_color = Color(0.4, 0.4, 0.5)
+
+    if is_locked:
+        # 锁定状态的灰色样式
+        normal_style.bg_color = Color(0.15, 0.15, 0.15, 0.8)
+        normal_style.border_color = Color(0.3, 0.3, 0.3)
+    else:
+        # 正常状态
+        normal_style.bg_color = Color(0.2, 0.2, 0.3, 0.9)
+        normal_style.border_color = Color(0.4, 0.4, 0.5)
+
     normal_style.set_border_width_all(2)
     normal_style.set_corner_radius_all(8)
 
     var hover_style = StyleBoxFlat.new()
-    hover_style.bg_color = Color(0.3, 0.3, 0.5, 0.95)
-    hover_style.border_color = Color(0.8, 0.8, 1.0)
+
+    if is_locked:
+        # 锁定状态的悬停样式（灰色，不高亮）
+        hover_style.bg_color = Color(0.18, 0.18, 0.18, 0.85)
+        hover_style.border_color = Color(0.4, 0.4, 0.4)
+    else:
+        # 正常状态的悬停样式
+        hover_style.bg_color = Color(0.3, 0.3, 0.5, 0.95)
+        hover_style.border_color = Color(0.8, 0.8, 1.0)
+
     hover_style.set_border_width_all(3)
     hover_style.set_corner_radius_all(8)
 
@@ -418,6 +481,20 @@ func _on_upgrade_failed(skill_id: String, reason: String) -> void:
 ## 关闭按钮点击事件
 func _on_close_button_pressed() -> void:
     _close_skill_tree()
+
+
+## 重置按钮点击事件
+func _on_reset_button_pressed() -> void:
+    # 调用技能树管理器的重置方法（带返还金币）
+    var refund_amount = SkillTreeManager.reset_skills_with_refund()
+
+    # 刷新 UI
+    _populate_skill_list()
+    _update_coin_display()
+
+    # 显示通知
+    var message = "🔄 技能已重置，返还金币: %d" % refund_amount
+    _show_notification(message, Color.YELLOW)
 
 
 ## ============================================================================

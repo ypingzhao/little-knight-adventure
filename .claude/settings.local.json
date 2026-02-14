@@ -65,7 +65,11 @@
       "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ rm -f scripts/slime_purple_boss.gd scripts/start_game.gd scripts/sword.gd)",
       "Bash(__NEW_LINE_ab0dd6a80b7d9e1e__ echo \"✅ 旧文件已删除\")",
       "Bash(__NEW_LINE_7018cd76b7fc21b9__ echo \"=== 新位置的 class_name 定义 ===\")",
-      "Bash(__NEW_LINE_7018cd76b7fc21b9__ grep -r \"class_name\" --include=\"*.gd\" scripts/actors/ scripts/items/ scripts/levels/)"
+      "Bash(__NEW_LINE_7018cd76b7fc21b9__ grep -r \"class_name\" --include=\"*.gd\" scripts/actors/ scripts/items/ scripts/levels/)",
+      "Bash(git mv:*)",
+      "Bash(git rm:*)",
+      "Bash(\"C:/Program Files/Godot/ Godot 4.3.exe\" --headless --validate-addon-structure)",
+      "Bash(gh auth status:*)"
     ]
   }
 }

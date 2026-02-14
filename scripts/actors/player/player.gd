@@ -1,8 +1,14 @@
 class_name Player
 extends CharacterBody2D
 
-#region /// export var 
-@export var move_speed:float = 100
+#region /// export var
+# 移动速度 = 基础速度 + 技能加成
+var move_speed:float:
+    get:
+        return float(GlobalData.player_move_speed + GlobalData.skill_speed)
+    set(value):
+        pass  # 只读，通过 GlobalData 控制
+
 @export var jump_speed:float = -640
 
 #endregion

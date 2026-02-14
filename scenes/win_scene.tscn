@@ -52,7 +52,7 @@ text = "Thank You for saving me."
 
 [node name="Door" parent="Soldier" instance=ExtResource("5_1a68o")]
 position = Vector2(127, -1)
-difficulty = "start"
+difficulty = "result"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_b6ng8")

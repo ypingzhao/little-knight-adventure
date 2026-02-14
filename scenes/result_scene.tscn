@@ -1,0 +1,139 @@
+[gd_scene load_steps=15 format=3 uid="uid://i0i10lo3yj1k"]
+
+[ext_resource type="Script" path="res://scripts/ui/result_scene.gd" id="ResultSceneScript"]
+[ext_resource type="Texture2D" uid="uid://c7mpobee22vr0" path="res://assets/brackeys_platformer_assets/Background.png" id="1_rxjlm"]
+[ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="2_0esc1"]
+[ext_resource type="Texture2D" uid="uid://cuj62vc30hum0" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/sprites/slime_green.png" id="3_3xx1f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wa4ka"]
+font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8al1"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qk783"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8egaj"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s85si"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3j4s"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6we72"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjm25"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(24, 48, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u3k5r"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ni4a"]
+atlas = ExtResource("3_3xx1f")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8axrq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8al1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qk783")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8egaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s85si")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3j4s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6we72")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjm25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u3k5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ni4a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ResultScene" type="Node2D"]
+script = ExtResource("ResultSceneScript")
+
+[node name="Bg" type="Sprite2D" parent="."]
+z_index = -100
+position = Vector2(240.5, 135.5)
+scale = Vector2(1.8333334, 1.5722222)
+texture = ExtResource("1_rxjlm")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ResultTitle" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 37.0
+offset_right = 418.0
+offset_bottom = 82.0
+text = "This Round Result"
+label_settings = SubResource("LabelSettings_wa4ka")
+horizontal_alignment = 1
+
+[node name="CoinNumber" type="Label" parent="CanvasLayer/Control/ResultTitle"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 74.0
+offset_right = 297.0
+offset_bottom = 97.0
+text = "XX"
+
+[node name="EnemyKilled" type="Label" parent="CanvasLayer/Control/ResultTitle"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 115.0
+offset_right = 297.0
+offset_bottom = 138.0
+text = "XX"
+
+[node name="ReturnButton" type="Button" parent="CanvasLayer"]
+offset_left = 184.0
+offset_top = 208.0
+offset_right = 303.0
+offset_bottom = 239.0
+text = "Return to Title"
+
+[node name="coin" parent="CanvasLayer" instance=ExtResource("2_0esc1")]
+position = Vector2(216, 122)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(216, 160)
+scale = Vector2(-1, 1)
+sprite_frames = SubResource("SpriteFrames_8axrq")
+autoplay = "default"

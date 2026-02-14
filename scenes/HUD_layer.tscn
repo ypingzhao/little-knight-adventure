@@ -64,3 +64,27 @@ text = "HP"
 label_settings = SubResource("LabelSettings_dtxlf")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="BossHealthBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_left = 361.0
+offset_top = 250.0
+offset_right = 423.0
+offset_bottom = 263.0
+size_flags_horizontal = 8
+theme_override_styles/background = SubResource("StyleBoxFlat_tg4cr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_37rai")
+value = 50.0
+show_percentage = false
+
+[node name="BossLabel" type="Label" parent="."]
+visible = false
+offset_left = 422.0
+offset_top = 245.0
+offset_right = 462.0
+offset_bottom = 268.0
+text = "BOSS"
+label_settings = SubResource("LabelSettings_dtxlf")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -62,17 +62,29 @@ const SKILL_CONFIG := {
         "unlock_condition": "",                      # 无前置条件，默认解锁
     },
 
-    "speed": {
-        "id": "speed",
+    "move speed": {
+        "id": "move speed",
         "name": "移动速度",
         "description": "提升移动速度",
         "max_level": 2,
         "cost_per_level": [200, 400],
-        "value_per_level": [50, 100],                # 速度加成（像素/秒）
+        "value_per_level": [25, 50],                # 速度加成（像素/秒）
         "effect_type": "increase_speed",
         "icon_path": "",
-        "unlock_condition": "health",                # 需要先升级生命值技能
+        "unlock_condition": "",                       # 默认可见，但需要 health Lv.1 才能升级
     },
+
+    "critical": {
+         "id": "critical",
+         "name": "暴击率",
+         "description": "提升暴击几率",
+         "max_level": 5,
+         "cost_per_level": [100, 150, 200, 250, 300],
+         "value_per_level": [0.05, 0.10, 0.15, 0.20, 0.25],    # 暴击率百分比（浮点数）
+         "effect_type": "increase_critical_chance",
+         "icon_path": "",
+         "unlock_condition": "",                      # 默认可见，但需要 attack Lv.1 才能升级
+     },
 
     # TODO: 添加更多技能...
     # 示例：
@@ -99,6 +111,7 @@ const SKILL_CONFIG := {
 ## ============================================================================
 
 var skill_states := {}
+var _is_loaded_from_save: bool = false  # 标记是否已从存档加载
 
 
 ## ============================================================================
@@ -106,7 +119,9 @@ var skill_states := {}
 ## ============================================================================
 
 func _ready() -> void:
-    _initialize_skill_states()
+    # 如果已经从存档加载过数据，就不要重新初始化
+    if not _is_loaded_from_save:
+        _initialize_skill_states()
     print("SkillTreeManager 初始化完成，已加载 %d 个技能配置" % SKILL_CONFIG.size())
 
 
@@ -141,13 +156,17 @@ func upgrade_skill(skill_id: String) -> bool:
     var skill_config = SKILL_CONFIG[skill_id]
     var current_state = skill_states[skill_id]
 
-    # 2. 检查技能是否已解锁
-    if not current_state.unlocked:
-        var condition = skill_config.unlock_condition
-        var reason = "需要先解锁前置技能: %s" % condition
-        print("❌ 升级失败 - %s" % reason)
-        emit_signal("upgrade_failed", skill_id, reason)
-        return false
+    # 2. 检查是否满足升级前置条件
+    var unlock_condition = skill_config.unlock_condition
+    if unlock_condition != "":
+        # 检查前置技能是否已至少升级1级
+        var prerequisite_level = get_skill_level(unlock_condition)
+        if prerequisite_level == 0:
+            var prereq_config = SKILL_CONFIG[unlock_condition]
+            var reason = "需要先升级 %s 到 Lv.1" % prereq_config.name
+            print("❌ 升级失败 - %s" % reason)
+            emit_signal("upgrade_failed", skill_id, reason)
+            return false
 
     # 3. 检查是否已达最大等级
     var current_level = current_state.current_level
@@ -180,6 +199,9 @@ func upgrade_skill(skill_id: String) -> bool:
     # 7. 解锁依赖此技能的其他技能
     _check_and_unlock_dependent_skills(skill_id)
 
+    # 8. 自动存档（保存金币和技能数据）
+    SaveLoad.save_game()
+
     return true
 
 
@@ -201,28 +223,53 @@ func _apply_skill_effect(skill_id: String, level: int) -> void:
             _increase_attack(effect_value)
         "increase_speed":
             _increase_speed(effect_value)
+        "increase_critical_chance":
+            _increase_critical_chance(effect_value)
         _:
             push_warning("未知的技能效果类型: %s" % skill_config.effect_type)
 
 
 ## 增加最大生命值
 func _increase_max_health(value: int) -> void:
-    PlayerHealth.max_health += value
-    print("💚 最大生命值 +%d (当前: %d)" % [value, PlayerHealth.max_health])
+    GlobalData.skill_health += value
+    # 重新计算玩家最大生命值（基础 + 技能加成）
+    # max_health 会自动更新，因为它是动态计算的
+    # 将当前生命值设置为新的最大值（技能升级回血）
+    PlayerHealth.set_to_max()
+    print("💚 最大生命值 +%d (基础: %d + 技能: %d = %d, 当前: %d)" % [
+        value, GlobalData.player_health, GlobalData.skill_health,
+        GlobalData.player_health + GlobalData.skill_health, PlayerHealth.health
+    ])
 
 
-## 增加攻击力（TODO: 需要实现攻击系统）
+## 增加攻击力
 func _increase_attack(value: int) -> void:
-    # TODO: 实现攻击力增加逻辑
-    # 可能需要在 GlobalData 中添加 player_attack 变量
-    print("⚔️ 攻击力 +%d" % value)
+    GlobalData.skill_attack += value
+    # 攻击力在战斗时读取：GlobalData.player_attack + GlobalData.skill_attack
+    print("⚔️ 攻击力 +%d (基础: %d + 技能: %d = %d)" % [
+        value, GlobalData.player_attack, GlobalData.skill_attack,
+        GlobalData.player_attack + GlobalData.skill_attack
+    ])
 
 
-## 增加移动速度（TODO: 需要实现速度系统）
+## 增加移动速度
 func _increase_speed(value: int) -> void:
-    # TODO: 实现移动速度增加逻辑
-    # 可能需要在玩家脚本中读取技能加成
-    print("🏃 移动速度 +%d" % value)
+    GlobalData.skill_speed += value
+    # 玩家 move_speed 属性会自动从 GlobalData 读取最新值
+    print("🏃 移动速度 +%d (基础: %d + 技能: %d = %d)" % [
+        value, GlobalData.player_move_speed, GlobalData.skill_speed,
+        GlobalData.player_move_speed + GlobalData.skill_speed
+    ])
+
+
+## 增加暴击率
+func _increase_critical_chance(value: float) -> void:
+    GlobalData.skill_critical += value
+    # 暴击率在战斗时读取：GlobalData.player_critical + GlobalData.skill_critical
+    print("💥 暴击率 +%.2f%% (基础: %.2f%% + 技能: %.2f%% = %.2f%%)" % [
+        value, GlobalData.player_critical, GlobalData.skill_critical,
+        GlobalData.player_critical + GlobalData.skill_critical
+    ])
 
 
 ## ============================================================================
@@ -325,19 +372,136 @@ func reset_all_skills() -> void:
     print("🔄 所有技能已重置")
 
 
+## 重置所有技能并返还金币
+## @return: 返还的金币数量
+func reset_skills_with_refund() -> int:
+    var refund_amount := 0
+
+    # 遍历所有技能，计算返还金额
+    for skill_id in skill_states.keys():
+        var state = skill_states[skill_id]
+        var current_level = state.current_level
+
+        if current_level > 0:
+            var skill_config = SKILL_CONFIG[skill_id]
+            # 累加所有已花费的金币
+            for level_index in current_level:
+                refund_amount += skill_config.cost_per_level[level_index]
+
+            print("  - %s: 从 Lv.%d 重置到 Lv.0，返还金币计算中..." % [skill_config.name, current_level])
+
+    # 重置所有技能状态
+    _initialize_skill_states()
+    _is_loaded_from_save = false  # 清除加载标志，允许重新初始化
+
+    # 重置技能加成
+    GlobalData.skill_health = 0
+    GlobalData.skill_speed = 0
+    GlobalData.skill_attack = 0
+    GlobalData.skill_critical = 0.0
+
+    # 返还金币
+    GlobalData.player_coin += refund_amount
+
+    print("🔄 所有技能已重置，返还金币: %d" % refund_amount)
+
+    # 保存存档（保存重置后的技能数据和金币）
+    SaveLoad.save_game()
+
+    return refund_amount
+
+
 ## ============================================================================
 ## 存档系统集成（TODO: 需要整合到 SaveLoad 系统）
 ## ============================================================================
 
 ## 获取需要保存的技能数据
 func get_save_data() -> Dictionary:
-    return {
-        "skill_states": skill_states.duplicate(true),
-    }
+    # 直接返回 skill_states 的深拷贝
+    # 检查 skill_states 的结构是否正确
+    print("get_save_data() - skill_states 类型: %s" % typeof(skill_states))
+    print("get_save_data() - skill_states 内容: %s" % skill_states)
+
+    # 如果 skill_states 本身有嵌套结构，解包它
+    if skill_states.has("skill_states"):
+        print("⚠️ 检测到嵌套结构，正在解包...")
+        return skill_states.skill_states.duplicate(true)
+
+    return skill_states.duplicate(true)
 
 
 ## 从存档加载技能数据
 func load_save_data(data: Dictionary) -> void:
+    print("=== 技能数据加载开始 ===")
+    print("接收到的数据类型: %s" % typeof(data))
+    print("接收到的数据内容: %s" % data)
+
+    # 检查是否有嵌套结构（data 中有一个 "skill_states" 键）
     if data.has("skill_states"):
-        skill_states = data.skill_states
-        print("✅ 技能树数据已加载")
+        print("⚠️ 检测到嵌套结构，正在解包...")
+        data = data.skill_states
+        print("解包后的数据: %s" % data)
+
+    if data.is_empty():
+        print("⚠️ 技能树数据为空")
+        return
+
+    # 验证每个技能的状态数据类型
+    for skill_id in data.keys():
+        var state = data[skill_id]
+        print("  技能 [%s] 类型: %s, 值: %s" % [skill_id, typeof(state), state])
+
+        # 检查 state 是否是 Dictionary
+        if not (state is Dictionary):
+            push_error("❌ 技能 [%s] 的状态不是 Dictionary，跳过！" % skill_id)
+            continue
+
+        if not state.has("current_level"):
+            push_error("❌ 技能 [%s] 的状态缺少 current_level 键！" % skill_id)
+            continue
+
+    # 所有验证通过后，应用技能加成（此时 data 已经解包过）
+    skill_states = data
+    _is_loaded_from_save = true  # 标记已从存档加载
+
+    # 重置技能加成为0
+    GlobalData.skill_health = 0
+    GlobalData.skill_speed = 0
+    GlobalData.skill_attack = 0
+    GlobalData.skill_critical = 0.0
+
+    # 遍历所有技能，直接设置总加成值
+    for skill_id in data.keys():
+        var state = data[skill_id]
+
+        # 再次确认类型
+        if not (state is Dictionary):
+            continue
+
+        if not state.has("current_level"):
+            continue
+
+        var level = state.current_level
+
+        if level > 0:
+            var skill_config = SKILL_CONFIG[skill_id]
+            var effect_value = skill_config.value_per_level[level - 1]
+
+            # 直接设置总加成值（不是累加）
+            match skill_config.effect_type:
+                "increase_max_health":
+                    GlobalData.skill_health = effect_value
+                "increase_attack":
+                    GlobalData.skill_attack = effect_value
+                "increase_speed":
+                    GlobalData.skill_speed = effect_value
+                "increase_critical_chance":
+                    GlobalData.skill_critical = effect_value
+
+            print("  - %s Lv.%d → %s = %d" % [skill_config.name, level, skill_config.effect_type, effect_value])
+
+    print("✅ 技能加成已恢复: 生命+%d 攻击+%d 速度+%d 暴击+%.2f" % [
+        GlobalData.skill_health, GlobalData.skill_attack,
+        GlobalData.skill_speed, GlobalData.skill_critical
+    ])
+    print("=== 技能数据加载完成 ===")

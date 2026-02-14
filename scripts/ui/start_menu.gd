@@ -11,9 +11,11 @@ func _ready() -> void:
         GlobalData.player_coin = 500
 
 func _on_button_play_pressed() -> void:
+    # 重置本轮统计数据
+    GlobalData.reset_session_data()
     LevelManager.goto_next_room("easy")
 
 func _on_button_upgrade_pressed() -> void:
     # 打开技能树 UI
     if skill_tree_ui:
-        skill_tree_ui.is_skill_tree_visible = true
+        skill_tree_ui.toggle_skill_tree()

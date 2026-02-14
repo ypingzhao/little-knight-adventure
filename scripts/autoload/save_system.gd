@@ -3,7 +3,7 @@ extends Node
 # autoload 脚本不需要 class_name，会与全局单例冲突
 
 const SAVE_PATH := "user://save_game.bin"
-const SAVE_VERSION := 1             # 用于以后字段迁移
+const SAVE_VERSION := 2             # v2: 添加技能树数据支持
 
 # 对外唯一接口：立即把当前 GlobalData 写盘
 func save_game() -> void:
@@ -12,14 +12,24 @@ func save_game() -> void:
         push_error("SaveSystem: 无法打开存档文件")
         return
 
+    var skill_data = SkillTreeManager.get_save_data()
+    print("SaveSystem: get_save_data() 返回类型: %s" % typeof(skill_data))
+    print("SaveSystem: get_save_data() 返回内容: %s" % skill_data)
+
+    # 再次检查是否还有嵌套结构
+    if typeof(skill_data) == TYPE_DICTIONARY and skill_data.has("skill_states"):
+        print("SaveSystem: ⚠️ 检测到嵌套结构，正在解包...")
+        skill_data = skill_data.skill_states
+
     var data := {
-        "version"     : SAVE_VERSION,
-        "coin"        : GlobalData.player_coin,
-        "fruit"       : GlobalData.player_fruit
+        "version"      : SAVE_VERSION,
+        "coin"         : GlobalData.player_coin,
+        "fruit"        : GlobalData.player_fruit,
+        "skill_states" : skill_data
     }
     file.store_var(data, true)      # true = 压缩
     file.close()
-    print("SaveSystem: 存档成功")
+    print("SaveSystem: 存档成功（金币: %d, 技能数据已保存）" % GlobalData.player_coin)
 
 # 私有：首次启动或切场景时自动调用
 func load_game() -> void:
@@ -39,16 +49,32 @@ func load_game() -> void:
     if data.get("version", 0) != SAVE_VERSION:
         data = _migrate(data)
 
-    GlobalData.player_coin  = data.get("coin", 0)
+    # 从存档读取金币数量，如果没有则使用默认值 80
+    GlobalData.player_coin = data.get("coin", 80)
     GlobalData.player_fruit = data.get("fruit", 0)
-    print("SaveSystem: 读档成功")
+
+    # 加载技能树数据（v2+）
+    if data.has("skill_states"):
+        print("SaveSystem: 准备加载技能数据...")
+        print("  skill_states 类型: %s" % typeof(data.skill_states))
+        print("  skill_states 内容: %s" % data.skill_states)
+        SkillTreeManager.load_save_data(data.skill_states)
+
+    print("SaveSystem: 读档成功（金币: %d）" % GlobalData.player_coin)
 
 # 预留：以后字段增减时做兼容
 func _migrate(old: Dictionary) -> Dictionary:
-    print("SaveSystem: 迁移旧存档")
-    # 示例：版本 0→1 新增 fruit 字段
+    print("SaveSystem: 迁移旧存档 (v%d → v%d)" % [old.get("version", 0), SAVE_VERSION])
+
+    # 版本 0→1：新增 fruit 字段
     if old.get("version", 0) == 0:
         old.fruit = 0
+
+    # 版本 1→2：新增技能树数据字段
+    if old.get("version", 0) == 1:
+        old.skill_states = {}
+        print("SaveSystem: 添加空的技能树数据")
+
     old.version = SAVE_VERSION
     return old
 

@@ -7,7 +7,7 @@ class_name Door
 #@export var door_name: String = "Door"
 @onready var area_2d: Area2D = $Area2D
 
-@export_enum("easy", "normal", "hard", "boss", "bonus", "win", "start") var difficulty := "easy"
+@export_enum("easy", "normal", "hard", "boss", "bonus", "win","result", "start") var difficulty := "easy"
 
 #const DUNGEON = preload("uid://ctph7o0jcutqv")
 #var dungeon_uid:String = "uid://ctph7o0jcutqv"
@@ -22,8 +22,6 @@ func _on_body_entered(body: Node2D) -> void:
     if body.is_in_group("player") and GlobalData.player_coin >= 0:
         print("ready to change scene!")
         SaveLoad.save_game()
-        
-        #get_tree().change_scene_to_file(shop_uid)
         call_deferred("deferred_change_scene")
     #
 func deferred_change_scene() -> void:

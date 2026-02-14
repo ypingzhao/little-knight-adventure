@@ -61,6 +61,8 @@ func take_damage(_amount:int)->void:
 func die()->void:
     dead = true
     print("die active!")
+    # 记录本轮击杀数
+    GlobalData.add_session_enemy_killed("bat")
     
     animated_sprite.play("die")
     await animated_sprite.animation_finished

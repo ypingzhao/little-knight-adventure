@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bacus37x47hj5"]
+[gd_scene load_steps=4 format=3 uid="uid://b72koh8j37hsi"]
 
-[ext_resource type="PackedScene" uid="uid://dip5hs3lqmvdg" path="res://player/player.tscn" id="1_hddm4"]
-[ext_resource type="PackedScene" uid="uid://cxho3j38e50ww" path="res://scenes/traps/falling_stone.tscn" id="2_qchbg"]
+[ext_resource type="PackedScene" uid="uid://mu2oyfm7lqyk" path="res://scenes/traps/falling_stone.tscn" id="2_qchbg"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_maef2"]
 
@@ -21,7 +20,17 @@ texture = SubResource("PlaceholderTexture2D_maef2")
 position = Vector2(249.5, 253)
 shape = SubResource("RectangleShape2D_hddm4")
 
-[node name="Player" parent="." instance=ExtResource("1_hddm4")]
+[node name="Player" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 position = Vector2(226, 125)
+script = null
 
 [node name="FallStone" parent="." instance=ExtResource("2_qchbg")]
