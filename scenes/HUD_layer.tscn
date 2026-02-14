@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cml20mwiesdyq"]
+[gd_scene load_steps=20 format=3 uid="uid://cml20mwiesdyq"]
 
 [ext_resource type="Script" uid="uid://ujriq6r674vy" path="res://scripts/ui/hud.gd" id="1_ek3oe"]
 [ext_resource type="FontFile" uid="uid://cai4smkl08013" path="res://assets/brackeys_platformer_assets/brackeys_platformer_assets/fonts/PixelOperator8.ttf" id="2_0qrqu"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="3_mx0kw"]
+[ext_resource type="Texture2D" uid="uid://m2b80f572own" path="res://assets/Kings and Pigs Sprites/12-Live and Coins/Big Diamond Idle (18x14).png" id="4_v70rb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6r1gv"]
 font = ExtResource("2_0qrqu")
@@ -27,6 +28,84 @@ corner_radius_bottom_left = 4
 [sub_resource type="LabelSettings" id="LabelSettings_dtxlf"]
 font_size = 12
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy3vl"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(0, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebm02"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(18, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4kgq"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(36, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l54d2"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(54, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o6eg"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(72, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mu3mx"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(90, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6fy0"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(108, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i08i5"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(126, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tp81"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(144, 0, 18, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iaedl"]
+atlas = ExtResource("4_v70rb")
+region = Rect2(162, 0, 18, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bnmgh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy3vl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebm02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i4kgq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l54d2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3o6eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mu3mx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6fy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i08i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tp81")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iaedl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
 [node name="HUDlayer" type="CanvasLayer"]
 script = ExtResource("1_ek3oe")
 
@@ -35,6 +114,15 @@ offset_left = 24.0
 offset_top = 16.0
 offset_right = 96.0
 offset_bottom = 39.0
+text = "100"
+label_settings = SubResource("LabelSettings_6r1gv")
+vertical_alignment = 1
+
+[node name="DiamondLabel" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 55.0
 text = "100"
 label_settings = SubResource("LabelSettings_6r1gv")
 vertical_alignment = 1
@@ -88,3 +176,8 @@ text = "BOSS"
 label_settings = SubResource("LabelSettings_dtxlf")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimatedSpriteDiamond" type="AnimatedSprite2D" parent="."]
+position = Vector2(14, 43)
+sprite_frames = SubResource("SpriteFrames_bnmgh")
+autoplay = "default"

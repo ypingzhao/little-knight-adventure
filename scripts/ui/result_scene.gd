@@ -19,6 +19,8 @@ extends Node2D
 
 @onready var coin_number: Label = $CanvasLayer/Control/ResultTitle/CoinNumber
 @onready var enemy_killed: Label = $CanvasLayer/Control/ResultTitle/EnemyKilled
+@onready var diamond_number: Label = $CanvasLayer/Control/ResultTitle/DiamondNumber
+
 @onready var return_button: Button = $CanvasLayer/ReturnButton
 
 
@@ -37,6 +39,9 @@ func _ready() -> void:
     print("📊 本轮结果 - 金币: %d, 敌人: %d" % [
         GlobalData.session_coins_collected, total_enemies
     ])
+
+    #显示本轮钻石数
+    diamond_number.text = str(GlobalData.get_session_diamond_collected())
 
     # 连接返回按钮
     if return_button:

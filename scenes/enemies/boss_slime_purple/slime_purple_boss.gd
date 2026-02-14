@@ -212,11 +212,11 @@ func _stage2_jump_drop():
 
 func _stage3_spit():
     print("spit small slimes attack")
-    # 向玩家方向抛射2个小史莱姆
-    for i in range(2):
+    # 向玩家方向抛射1个小史莱姆
+    for i in range(1):
         var slime = small_slime_scene.instantiate()
         # 在boss前方不同位置生成，让它们稍微分散
-        var offset_x = (i - 1.5) * 30  # -45, -15, 15, 45
+        var offset_x = (i - 0.5) * 30  # -45, -15, 15, 45
         slime.global_position = global_position + Vector2(offset_x, -20)
         get_tree().current_scene.add_child(slime)
 
@@ -289,7 +289,7 @@ func _die():
     var base_angle = deg_to_rad(45)  # 左右扇形角度
 
     # 向玩家方向抛射4个小史莱姆
-    for i in range(4):
+    for i in range(3):
         var angle = base_angle * (i - 1.5)  # -67.5°, -22.5°, 22.5°, 67.5°
         var vx = cos(angle) * randf_range(200.0, 400.0) * throw_direction  # 乘方向符号
         var vy = -sqrt(2.0 * 980 * 80)  # 固定向上初速度（负值=向上）

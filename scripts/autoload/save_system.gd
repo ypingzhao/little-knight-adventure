@@ -25,11 +25,12 @@ func save_game() -> void:
         "version"      : SAVE_VERSION,
         "coin"         : GlobalData.player_coin,
         "fruit"        : GlobalData.player_fruit,
+        "diamond"      : GlobalData.player_diamond,
         "skill_states" : skill_data
     }
     file.store_var(data, true)      # true = 压缩
     file.close()
-    print("SaveSystem: 存档成功（金币: %d, 技能数据已保存）" % GlobalData.player_coin)
+    print("SaveSystem: 存档成功（金币: %d, 钻石: %d, 技能数据已保存）" % [GlobalData.player_coin, GlobalData.player_diamond])
 
 # 私有：首次启动或切场景时自动调用
 func load_game() -> void:
@@ -52,6 +53,7 @@ func load_game() -> void:
     # 从存档读取金币数量，如果没有则使用默认值 80
     GlobalData.player_coin = data.get("coin", 80)
     GlobalData.player_fruit = data.get("fruit", 0)
+    GlobalData.player_diamond = data.get("diamond", 0)
 
     # 加载技能树数据（v2+）
     if data.has("skill_states"):

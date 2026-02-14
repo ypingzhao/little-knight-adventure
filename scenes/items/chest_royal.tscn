@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c17uprknw3yfl"]
+[gd_scene load_steps=8 format=3 uid="uid://c5ps2t7ekstsw"]
 
-[ext_resource type="Texture2D" uid="uid://c8r2aw7je6nqr" path="res://assets/Sprout village Assets/Inventory/chest.png" id="1_16coa"]
-[ext_resource type="Script" uid="uid://byirkw6p7vxas" path="res://scripts/items/treasure_box.gd" id="1_e1h5c"]
-[ext_resource type="AudioStream" uid="uid://cntuxlcipihop" path="res://assets/Sprout village Assets/Sound/ChestOpen.wav" id="2_1ha1l"]
+[ext_resource type="Script" uid="uid://byirkw6p7vxas" path="res://scripts/items/treasure_chest.gd" id="1_ab0wx"]
+[ext_resource type="Texture2D" uid="uid://c8r2aw7je6nqr" path="res://assets/Sprout village Assets/Inventory/chest.png" id="2_fabjt"]
+[ext_resource type="AudioStream" uid="uid://cntuxlcipihop" path="res://assets/Sprout village Assets/Sound/ChestOpen.wav" id="3_bc8f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_16coa"]
-size = Vector2(15, 12)
+size = Vector2(28, 12)
 
 [sub_resource type="Animation" id="Animation_e1h5c"]
 length = 0.001
@@ -115,27 +115,28 @@ _data = {
 &"open_chest": SubResource("Animation_16coa")
 }
 
-[node name="TreasureBox" type="Node2D"]
-script = ExtResource("1_e1h5c")
+[node name="ChestRoyal" type="Node2D"]
+script = ExtResource("1_ab0wx")
+chest_rarity = 2
 
 [node name="Sprite2DClose" type="Sprite2D" parent="."]
 position = Vector2(0, -7)
-texture = ExtResource("1_16coa")
+texture = ExtResource("2_fabjt")
 region_enabled = true
-region_rect = Rect2(8, 32, 16, 16)
+region_rect = Rect2(72, 65, 15, 15)
 
 [node name="Sprite2DOpen" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, -7)
-texture = ExtResource("1_16coa")
+texture = ExtResource("2_fabjt")
 region_enabled = true
-region_rect = Rect2(8, 48, 16, 16)
+region_rect = Rect2(72, 80, 15, 16)
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-0.5, -7)
+position = Vector2(0, -7)
 shape = SubResource("RectangleShape2D_16coa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -144,6 +145,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_1ha1l")
+stream = ExtResource("3_bc8f8")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

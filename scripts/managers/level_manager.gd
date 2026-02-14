@@ -2,8 +2,8 @@
 extends Node
 
 var LEVEL_DB = {
-    "easy"   : {"levels": ["res://scenes/coco_adventure.tscn","res://scenes/dungeon.tscn"],   "index": 0},
-    "normal" : {"levels": ["res://scenes/levels/island_normal_ch_1.tscn","res://scenes/levels/dungeon_normal_ch_1.tscn"],                    "index": 0},
+    "easy"   : {"levels": ["res://scenes/levels/coco_adventure.tscn","res://scenes/levels/dungeon.tscn"],   "index": 0},
+    "normal" : {"levels": ["res://scenes/levels/island_normal_ch_1.tscn","res://scenes/levels/dungeon_normal_ch_1.tscn"],                    "index": 1},
     "hard"   : {"levels": ["res://scenes/levels/oscar_adventure.tscn"],                              "index": 0},
     "boss"   : {"levels": ["res://scenes/levels/boss01_scene.tscn"],                                  "index": 0},
     "bonus"  : {"levels": ["res://scenes/shop.tscn"],                                          "index": 0},

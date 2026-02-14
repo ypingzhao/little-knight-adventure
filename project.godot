@@ -36,6 +36,7 @@ window/stretch/mode="canvas_items"
 
 player=""
 enemy=""
+checkpoint=""
 
 [input]
 

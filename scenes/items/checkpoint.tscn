@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://u1am1lohuc18"]
+
+[ext_resource type="Script" uid="uid://diffk5yxwfxpp" path="res://scripts/items/checkpoint_lamp.gd" id="1_o4vow"]
+[ext_resource type="Texture2D" uid="uid://44cpkhjf1ivw" path="res://assets/Sprout village Assets/Components/Lamp .png" id="1_up50w"]
+[ext_resource type="AudioStream" uid="uid://cbgr48n74un7w" path="res://assets/Sprout village Assets/Sound/7.mp3" id="2_r8yjt"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r8yjt"]
+atlas = ExtResource("1_up50w")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o4vow"]
+atlas = ExtResource("1_up50w")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4f8b"]
+atlas = ExtResource("1_up50w")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gwje6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r8yjt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o4vow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4f8b")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up50w"]
+size = Vector2(25, 41)
+
+[node name="CheckpointLamp" type="Node2D" groups=["checkpoint"]]
+script = ExtResource("1_o4vow")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, -5)
+sprite_frames = SubResource("SpriteFrames_gwje6")
+frame = 2
+frame_progress = 0.39715675
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -4.5)
+shape = SubResource("RectangleShape2D_up50w")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_r8yjt")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

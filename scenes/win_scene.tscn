@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cvfhbryck6y3a"]
+[gd_scene load_steps=10 format=4 uid="uid://cvfhbryck6y3a"]
 
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="1_p78a6"]
 [ext_resource type="PackedScene" uid="uid://bxgcwfpa138q7" path="res://scenes/NPC/soldier.tscn" id="2_aw8vk"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://cldhictj5kcpi" path="res://scenes/NPC/knight.tscn" id="4_7yt3q"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="5_1a68o"]
 [ext_resource type="AudioStream" uid="uid://cfrbscuq8hsx5" path="res://assets/music/20 - The Journey.mp3" id="5_b6ng8"]
+[ext_resource type="PackedScene" uid="uid://brxjnutxk3333" path="res://scenes/items/chest_rare.tscn" id="6_3vslu"]
 [ext_resource type="PackedScene" uid="uid://bes5mn2b6dmnf" path="res://scenes/traps/kill_zone.tscn" id="7_qcp0s"]
+[ext_resource type="PackedScene" uid="uid://cjmxll8c5xymh" path="res://scenes/HUD_layer.tscn" id="8_hudlayer"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p78a6"]
 font_size = 32
@@ -54,6 +56,12 @@ text = "Thank You for saving me."
 position = Vector2(127, -1)
 difficulty = "result"
 
+[node name="ChestRare" parent="Soldier" instance=ExtResource("6_3vslu")]
+position = Vector2(-103, -1)
+
+[node name="ChestRare2" parent="Soldier" instance=ExtResource("6_3vslu")]
+position = Vector2(51, -1)
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_b6ng8")
 volume_db = -10.874
@@ -62,3 +70,5 @@ parameters/looping = true
 
 [node name="KillZone" parent="." instance=ExtResource("7_qcp0s")]
 position = Vector2(115, 271)
+
+[node name="HUDLayer" parent="." instance=ExtResource("8_hudlayer")]

@@ -1,0 +1,149 @@
+[gd_scene load_steps=8 format=3 uid="uid://c17uprknw3yfl"]
+
+[ext_resource type="Texture2D" uid="uid://c8r2aw7je6nqr" path="res://assets/Sprout village Assets/Inventory/chest.png" id="1_16coa"]
+[ext_resource type="Script" uid="uid://byirkw6p7vxas" path="res://scripts/items/treasure_chest.gd" id="1_e1h5c"]
+[ext_resource type="AudioStream" uid="uid://cntuxlcipihop" path="res://assets/Sprout village Assets/Sound/ChestOpen.wav" id="2_1ha1l"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_16coa"]
+size = Vector2(28, 12)
+
+[sub_resource type="Animation" id="Animation_e1h5c"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DClose:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DOpen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_16coa"]
+resource_name = "open_chest"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2DClose:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2DOpen:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.51209426),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ha1l"]
+_data = {
+&"RESET": SubResource("Animation_e1h5c"),
+&"open_chest": SubResource("Animation_16coa")
+}
+
+[node name="ChestNormal" type="Node2D"]
+script = ExtResource("1_e1h5c")
+
+[node name="Sprite2DClose" type="Sprite2D" parent="."]
+position = Vector2(0, -7)
+texture = ExtResource("1_16coa")
+region_enabled = true
+region_rect = Rect2(8, 32, 16, 16)
+
+[node name="Sprite2DOpen" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -7)
+texture = ExtResource("1_16coa")
+region_enabled = true
+region_rect = Rect2(8, 48, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, -7)
+shape = SubResource("RectangleShape2D_16coa")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1ha1l")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_1ha1l")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

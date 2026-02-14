@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=4 uid="uid://ncyouc4c2mnk"]
+[gd_scene load_steps=29 format=4 uid="uid://ncyouc4c2mnk"]
 
 [ext_resource type="TileSet" uid="uid://bfpmx1jcxl14d" path="res://tileset/dungeon.tres" id="1_lo7k2"]
 [ext_resource type="TileSet" uid="uid://bgq8kvn5xhwie" path="res://tileset/princess_island.tres" id="2_7sbf8"]
@@ -9,13 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://k6accm1dofjy" path="res://scenes/traps/spike.tscn" id="7_q12vl"]
 [ext_resource type="PackedScene" uid="uid://yl1edpykjw4e" path="res://scenes/traps/platform_b.tscn" id="8_ldmhp"]
 [ext_resource type="Script" uid="uid://er6t0h35hv7e" path="res://scripts/traps/active_platform.gd" id="9_ldmhp"]
-[ext_resource type="PackedScene" uid="uid://c17uprknw3yfl" path="res://scenes/items/treasure_box.tscn" id="10_pf73d"]
+[ext_resource type="PackedScene" uid="uid://c17uprknw3yfl" path="res://scenes/items/chest_normal.tscn" id="10_pf73d"]
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="11_q8wk0"]
 [ext_resource type="PackedScene" uid="uid://c2m8drm0854op" path="res://scenes/enemies/bat.tscn" id="12_djhp1"]
 [ext_resource type="PackedScene" uid="uid://l6dia2lnjljn" path="res://scenes/enemies/bat_spawner.tscn" id="13_pqrsl"]
 [ext_resource type="PackedScene" uid="uid://dt2qbtktb203n" path="res://scenes/enemies/slime_green.tscn" id="14_c50fp"]
-[ext_resource type="PackedScene" uid="uid://1676ljpacqdv" path="res://scenes/items/health_pot.tscn" id="15_jpa18"]
 [ext_resource type="PackedScene" uid="uid://uckndpki27j8" path="res://scenes/items/coin.tscn" id="16_b06s7"]
+[ext_resource type="PackedScene" uid="uid://u1am1lohuc18" path="res://scenes/items/checkpoint.tscn" id="17_b06s7"]
+[ext_resource type="PackedScene" uid="uid://brxjnutxk3333" path="res://scenes/items/chest_rare.tscn" id="17_bkmbw"]
+[ext_resource type="PackedScene" uid="uid://c5ps2t7ekstsw" path="res://scenes/items/chest_royal.tscn" id="18_nj5j6"]
 
 [sub_resource type="Animation" id="Animation_q8wk0"]
 length = 0.001
@@ -260,9 +262,6 @@ position = Vector2(855, 144)
 
 [node name="Items" type="Node" parent="."]
 
-[node name="HealthPot" parent="Items" instance=ExtResource("15_jpa18")]
-position = Vector2(-245, -16)
-
 [node name="coin" parent="Items" instance=ExtResource("16_b06s7")]
 position = Vector2(-208, 126)
 
@@ -310,6 +309,18 @@ position = Vector2(-296, 118)
 
 [node name="coin4" parent="Items" instance=ExtResource("16_b06s7")]
 position = Vector2(-7, 136)
+
+[node name="CheckpointLamp" parent="." instance=ExtResource("17_b06s7")]
+position = Vector2(413, 96)
+
+[node name="ChestRare" parent="." instance=ExtResource("17_bkmbw")]
+position = Vector2(-134, -17)
+
+[node name="ChestRare" parent="ChestRare" instance=ExtResource("17_bkmbw")]
+position = Vector2(-43, 177)
+
+[node name="ChestRoyal" parent="ChestRare/ChestRare" instance=ExtResource("18_nj5j6")]
+position = Vector2(1377, -18)
 
 [connection signal="body_entered" from="PlatformB/Area2D" to="PlatformB" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="PlatformB2/Area2D" to="PlatformB2" method="_on_area_2d_body_entered"]

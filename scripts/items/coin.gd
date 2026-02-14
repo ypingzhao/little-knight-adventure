@@ -8,5 +8,6 @@ func _on_body_entered(body: Node2D) -> void:
         animation_player.play("pick_up")
         GlobalData.add_point()
         GlobalData.add_session_coin()  # 记录本轮金币
+        SaveLoad.save_game()  # 保存游戏数据
         print("金币 +1，当前: %d" % GlobalData.player_coin)
     

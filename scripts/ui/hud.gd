@@ -4,6 +4,7 @@ extends CanvasLayer
 @onready var boss_health_bar: ProgressBar = %BossHealthBar
 @onready var boss_label: Label = $BossLabel
 @onready var coin_label: Label = $CoinLabel
+@onready var diamond_label: Label = $DiamondLabel
 
 var tween: Tween
 
@@ -36,6 +37,10 @@ func _on_boss_health_changed(current_hp: int) -> void:
 func _process(_delta: float) -> void:
     var coin:int = GlobalData.player_coin
     coin_label.text = str(coin)
+
+    #增加diamond显示逻辑
+    var diamond:int = GlobalData.player_diamond
+    diamond_label.text = str(diamond)
 
 
 func _on_health_changed(_old: int, new_val: int):

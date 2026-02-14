@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cml20mwiesdyq" path="res://scenes/HUD_layer.tscn" id="10_7wc3a"]
 [ext_resource type="PackedScene" uid="uid://dqh67sat8kl11" path="res://scenes/items/door.tscn" id="11_7wc3a"]
 [ext_resource type="PackedScene" uid="uid://k6accm1dofjy" path="res://scenes/traps/spike.tscn" id="12_7a5bf"]
-[ext_resource type="PackedScene" uid="uid://1676ljpacqdv" path="res://scenes/items/health_pot.tscn" id="12_7wjui"]
+[ext_resource type="PackedScene" uid="uid://brxjnutxk3333" path="res://scenes/items/chest_rare.tscn" id="12_ohg4i"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_kun6q")
@@ -67,9 +67,6 @@ z_index = 1
 position = Vector2(522, 112)
 difficulty = "normal"
 
-[node name="HealthPot" parent="." instance=ExtResource("12_7wjui")]
-position = Vector2(375, 32)
-
 [node name="SlimeGreen4" parent="." instance=ExtResource("6_4f3i4")]
 position = Vector2(63, 95)
 
@@ -102,3 +99,6 @@ position = Vector2(503, 112)
 
 [node name="Spike8" parent="." instance=ExtResource("12_7a5bf")]
 position = Vector2(360, 32)
+
+[node name="ChestRare" parent="." instance=ExtResource("12_ohg4i")]
+position = Vector2(394, 32)
